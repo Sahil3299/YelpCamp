@@ -1,0 +1,60 @@
+<% layout('layouts/boilerplate')%>
+<style>
+    body {
+        background-color: #121212;
+        color: #ffffff;
+    }
+    .card {
+        background-color: #1e1e1e;
+        border: 1px solid #333;
+        color: #ffffff;
+    }
+    .card-title {
+        color: #ffffff;
+    }
+    .card-text {
+        color: #cccccc;
+    }
+    .text-muted {
+        color: #888 !important;
+    }
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+    }
+    h1 {
+        color: #ffffff;
+    }
+    a {
+        color: #ffffff;
+    }
+    a:hover {
+        color: #cccccc;
+    }
+</style>
+
+<h1 class="text-center">All Campgrounds</h1>
+<div class="mb-3 text-center">
+    <a href="/campgrounds/new" class="btn btn-success">Add Campground</a>
+</div>
+<div class="row">
+    <% for (let campground of campgrounds){%>
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card h-100">
+            <img class="card-img-top" alt="<%=campground.title%>" src="<%=campground.image%>">
+            <div class="card-body">
+                <h5 class="card-title"><%= campground.title %></h5>
+                <p class="card-text"><%= campground.description %></p>
+                <p class="card-text">
+                    <small class="text-muted"><%= campground.location%></small>
+                </p>
+                <a class="btn btn-primary" href="/campgrounds/<%=campground._id%>">View <%=campground.title%></a>
+            </div>
+        </div>
+    </div>
+    <% }%>
+</div>

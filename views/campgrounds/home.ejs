@@ -1,0 +1,109 @@
+<% layout('layouts/boilerplate')%>
+<style>
+    .hero-section {
+        background-image: url('https://codegift.ee/wp-content/uploads/2022/01/yelpcamp_background.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+    }
+    .hero-overlay {
+        /* background-color: rgba(0, 0, 0, 0.7); */
+        width: 100%;
+        padding: 5rem 0;
+        color: #ffffff;
+    }
+    body {
+        background-color: #121212;
+        color: #ffffff;
+    }
+    .card {
+        background-color: #1e1e1e;
+        border: 1px solid #333;
+        color: #ffffff;
+    }
+    .card-title {
+        color: #ffffff;
+    }
+    .card-text {
+        color: #cccccc;
+    }
+    .btn-outline-primary {
+        color: #ffffff;
+        border-color: #ffffff;
+    }
+    .btn-outline-primary:hover {
+        background-color: #ffffff;
+        color: #000000;
+    }
+    .btn-outline-secondary {
+        color: #cccccc;
+        border-color: #cccccc;
+    }
+    .btn-outline-secondary:hover {
+        background-color: #cccccc;
+        color: #000000;
+    }
+    .btn-outline-danger {
+        color: #ff6b6b;
+        border-color: #ff6b6b;
+    }
+    .btn-outline-danger:hover {
+        background-color: #ff6b6b;
+        color: #ffffff;
+    }
+</style>
+<div class="hero-section">
+    <div class="hero-overlay">
+        <div class="container-fluid">
+            <h1 class="display-4 fw-bold text-center">Welcome to YelpCamp!</h1>
+            <p class="col-md-8 fs-4 mx-auto text-center">Discover and share the best campgrounds around the world. Read reviews, leave your own, and plan your next adventure.</p>
+            <div class="text-center">
+                <a class="btn btn-light btn-lg" href="/campgrounds">View Campgrounds</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Explore Campgrounds</h5>
+                <p class="card-text">Browse through thousands of campgrounds submitted by users. Find the perfect spot for your next trip.</p>
+                <a href="/campgrounds" class="btn btn-primary">Explore</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Share Your Experience</h5>
+                <p class="card-text">Have a favorite campground? Add it to our site and help others discover amazing places.</p>
+                <a href="/campgrounds/new" class="btn btn-success">Add Campground</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Read Reviews</h5>
+                <p class="card-text">See what other campers have to say. Honest reviews to help you make informed decisions.</p>
+                <a href="/campgrounds" class="btn btn-info">Read Reviews</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-5 text-center">
+    <h2>Ready to Start Camping?</h2>
+    <p class="lead">Join our community of outdoor enthusiasts today.</p>
+    <% if(!currentUser) {%>
+    <a href="/register" class="btn btn-outline-primary btn-lg">Sign Up</a>
+    <a href="/login" class="btn btn-outline-secondary btn-lg ms-2">Log In</a>
+    <% } else {%>
+    <a href="/logout" class="btn btn-outline-danger btn-lg">Logout</a>
+    <% } %>
+</div>
