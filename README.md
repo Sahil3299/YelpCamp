@@ -240,7 +240,12 @@ yelpcamp/
 ## 📸 Screenshots
 
 <!-- Add your screenshot below by replacing the filename -->
-![YelpCamp Homepage](docs/images/screenshot.png)
+![YelpCamp Homepage](docs/images/1.png)
+![YelpCamp Login](docs/images/2.png)
+![YelpCamp Register](docs/images/3.png)
+![YelpCamp AddCampground](docs/images/4.png)
+![YelpCamp ViewCampgrounds](docs/images/5.png)
+![YelpCamp Review](docs/images/5.png)
 
 *Add your own screenshot by saving an image to `docs/images/` folder and updating the path above.*
 
