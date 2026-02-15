@@ -247,37 +247,7 @@ yelpcamp/
 ![YelpCamp ViewCampgrounds](docs/images/5.png)
 ![YelpCamp Review](docs/images/5.png)
 
-*Add your own screenshot by saving an image to `docs/images/` folder and updating the path above.*
 
-## 🤝 Contributing
-
-Contributions are welcome! Here's how you can help:
-
-1. **Fork the repository**
-2. **Create a feature branch:**
-   
-```
-bash
-   git checkout -b feature/AmazingFeature
-   
-```
-3. **Make your changes** and commit them:
-   
-```
-bash
-   git commit -m 'Add some AmazingFeature'
-   
-```
-4. **Push to the branch:**
-   
-```
-bash
-   git push origin feature/AmazingFeature
-   
-```
-5. **Open a Pull Request**
-
-Please make sure to update tests as appropriate.
 
 ## 🐛 Troubleshooting
 
@@ -313,5 +283,5 @@ This project is licensed under the ISC License.
 ---
 
 <p align="center">
-  Made with ❤️ by camping enthusiasts, for camping enthusiasts
+  Made with ❤️ by Sahil shinde camping enthusiasts, for camping enthusiasts
 </p>
