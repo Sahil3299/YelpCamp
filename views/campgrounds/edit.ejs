@@ -75,9 +75,26 @@
                 </div>
             </div>
             <div class="mb-3">
+                <label class="form-label" for="country">Country</label>
+                <input class="form-control" type="text" id="country" name="campground[country]"
+                    value="<%=campground.country %>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
                 <label class="form-label" for="image">Image Url</label>
                 <input class="form-control" type="text" id="image" name="campground[image]"
                     value="<%=campground.image %>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="images">Additional Images (comma-separated URLs)</label>
+                <input class="form-control" type="text" id="images" name="campground[images]"
+                    value="<%=campground.images ? campground.images.join(', ') : '' %>"
+                    placeholder="https://example.com/image1.jpg, https://example.com/image2.jpg">
                 <div class="valid-feedback">
                     Looks good!
                 </div>

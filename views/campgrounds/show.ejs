@@ -60,12 +60,32 @@
     <div class="col-6">
         <div class="card mb-3">
             <img src="<%= campground.image%>" class="card-img-top" alt="...">
+            <% if(campground.images && campground.images.length > 0) { %>
+            <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <% campground.images.forEach((img, index) => { %>
+                    <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
+                        <img src="<%= img %>" class="d-block w-100" alt="Campground image <%= index + 1 %>">
+                    </div>
+                    <% }); %>
+                </div>
+                <% if(campground.images.length > 1) { %>
+                <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </button>
+                <% } %>
+            </div>
+            <% } %>>
             <div class="card-body">
                 <h5 class="card-title"><%= campground.title%></h5>
                 <p class="card-text"><%= campground.description%></p>
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item text-muted"><%= campground.location%></li>
+                <li class="list-group-item text-muted"><%= campground.country%></li>
                 <li class="list-group-item">Submitted by <%= campground.author ? campground.author.username : 'Sahil' %></li>
                 <li class="list-group-item">$<%= campground.price%>/night</li>
             </ul>

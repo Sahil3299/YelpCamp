@@ -5,9 +5,15 @@ const Schema = mongoose.Schema;
 const CampgroundSchema = new Schema({
     title: String,
     image: String,
+    images: [String],
     price: Number,
     description: String,
     location: String,
+    country: String,
+    rating: {
+        type: Number,
+        default: 0
+    },
     author: {
         type: Schema.Types.ObjectId,
         ref: 'User'
@@ -17,7 +23,11 @@ const CampgroundSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: 'Review'
         }
-    ]
+    ],
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
 });
 
 CampgroundSchema.post('findOneAndDelete', async function (doc) {

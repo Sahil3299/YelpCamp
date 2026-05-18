@@ -12,6 +12,15 @@ module.exports.renderNewForm = (req, res) => {
 module.exports.createCampground = async (req, res, next) => {
     const campground = new Campground(req.body.campground);
     campground.author = req.user._id;
+
+    // Parse comma-separated images string into array
+    if (campground.images && typeof campground.images === 'string') {
+        campground.images = campground.images
+            .split(',')
+            .map(img => img.trim())
+            .filter(img => img.length > 0);
+    }
+
     await campground.save();
     req.flash('success', 'Successfully made a new campground!');
     res.redirect(`/campgrounds/${campground._id}`)
@@ -43,7 +52,17 @@ module.exports.renderEditForm = async (req, res) => {
 
 module.exports.updateCampground = async (req, res) => {
     const { id } = req.params;
-    const campground = await Campground.findByIdAndUpdate(id, { ...req.body.campground });
+    const campgroundData = { ...req.body.campground };
+
+    // Parse comma-separated images string into array
+    if (campgroundData.images && typeof campgroundData.images === 'string') {
+        campgroundData.images = campgroundData.images
+            .split(',')
+            .map(img => img.trim())
+            .filter(img => img.length > 0);
+    }
+
+    const campground = await Campground.findByIdAndUpdate(id, campgroundData);
     req.flash('success', 'Successfully updated campground!');
     res.redirect(`/campgrounds/${campground._id}`)
 }
