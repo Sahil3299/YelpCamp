@@ -1,26 +1,87 @@
 <% layout('layouts/boilerplate')%>
-<h1>Register</h1>
-<form action="/register" method="POST" class="validated-form" novalidate>
-    <div class="mb-3">
-        <label class="form-label" for="username">Username</label>
-        <input class="form-control" type="text" id="username" name="username" required>
-        <div class="valid-feedback">
-            Looks good!
+
+<div class="container-md py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-5">
+            <div class="form-section">
+                <div class="text-center mb-4">
+                    <h1 class="mb-2">
+                        <i class="fas fa-user-plus text-success me-2"></i>Create Account
+                    </h1>
+                    <p class="text-muted">Join the YelpCamp community today</p>
+                </div>
+
+                <form action="/register" method="POST" class="validated-form" novalidate>
+                    <div class="form-group-vertical mb-4">
+                        <label class="form-label" for="username">
+                            <i class="fas fa-user text-success me-1"></i>Username
+                        </label>
+                        <input class="form-control" type="text" id="username" name="username" 
+                            placeholder="Choose a username" required autocomplete="username">
+                        <div class="valid-feedback">
+                            <i class="fas fa-check me-1"></i>Username looks good!
+                        </div>
+                    </div>
+
+                    <div class="form-group-vertical mb-4">
+                        <label class="form-label" for="email">
+                            <i class="fas fa-envelope text-success me-1"></i>Email Address
+                        </label>
+                        <input class="form-control" type="email" id="email" name="email" 
+                            placeholder="your@email.com" required autocomplete="email">
+                        <div class="valid-feedback">
+                            <i class="fas fa-check me-1"></i>Email looks good!
+                        </div>
+                    </div>
+
+                    <div class="form-group-vertical mb-4">
+                        <label class="form-label" for="password">
+                            <i class="fas fa-lock text-success me-1"></i>Password
+                        </label>
+                        <div class="password-toggle">
+                            <input class="form-control" type="password" id="password" name="password" 
+                                placeholder="Enter a strong password" required autocomplete="new-password">
+                            <button type="button" class="password-toggle-btn" onclick="togglePassword(event)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <small class="text-muted d-block mt-2">
+                            <i class="fas fa-info-circle me-1"></i>Use a strong password with at least 8 characters
+                        </small>
+                        <div class="valid-feedback">
+                            <i class="fas fa-check me-1"></i>Password looks good!
+                        </div>
+                    </div>
+
+                    <button class="btn btn-success w-100 btn-lg mb-3" type="submit">
+                        <i class="fas fa-check me-2"></i>Create Account
+                    </button>
+
+                    <div class="text-center">
+                        <p class="text-muted mb-0">
+                            Already have an account? 
+                            <a href="/login" class="link-hover-underline fw-bold">Sign in</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-    <div class="mb-3">
-        <label class="form-label" for="email">Email</label>
-        <input class="form-control" type="email" id="email" name="email" required>
-        <div class="valid-feedback">
-            Looks good!
-        </div>
-    </div>
-    <div class="mb-3">
-        <label class="form-label" for="password">Password</label>
-        <input class="form-control" type="password" id="password" name="password" required>
-        <div class="valid-feedback">
-            Looks good!
-        </div>
-    </div>
-    <button class="btn btn-success">Register</button>
-</form>
+</div>
+
+<script>
+function togglePassword(e) {
+    e.preventDefault();
+    const input = document.getElementById('password');
+    const icon = e.currentTarget.querySelector('i');
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+    } else {
+        input.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+    }
+}
+</script>

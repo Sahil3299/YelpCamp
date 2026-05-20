@@ -1,20 +1,90 @@
 <% layout('layouts/boilerplate')%>
-<h1>Login</h1>
-<form action="/login" method="POST" class="validated-form" novalidate>
-    <div class="mb-3">
-        <label class="form-label" for="username">Username</label>
-        <input class="form-control" type="text" id="username" name="username" required>
-        <div class="valid-feedback">
-            Looks good!
-        </div>
-    </div>
 
-    <div class="mb-3">
-        <label class="form-label" for="password">Password</label>
-        <input class="form-control" type="password" id="password" name="password" required>
-        <div class="valid-feedback">
-            Looks good!
+<div class="container-md py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-5">
+            <div class="form-section">
+                <div class="text-center mb-4">
+                    <h1 class="mb-2">
+                        <i class="fas fa-sign-in-alt text-primary me-2"></i>Welcome Back
+                    </h1>
+                    <p class="text-muted">Sign in to your YelpCamp account</p>
+                </div>
+
+                <form action="/login" method="POST" class="validated-form" novalidate>
+                    <div class="form-group-vertical mb-4">
+                        <label class="form-label" for="username">
+                            <i class="fas fa-user text-primary me-1"></i>Username
+                        </label>
+                        <input class="form-control" type="text" id="username" name="username" 
+                            placeholder="Enter your username" required autocomplete="username">
+                        <div class="valid-feedback">
+                            <i class="fas fa-check me-1"></i>Username looks good!
+                        </div>
+                    </div>
+
+                    <div class="form-group-vertical mb-4">
+                        <label class="form-label" for="password">
+                            <i class="fas fa-lock text-primary me-1"></i>Password
+                        </label>
+                        <div class="password-toggle">
+                            <input class="form-control" type="password" id="password" name="password" 
+                                placeholder="Enter your password" required autocomplete="current-password">
+                            <button type="button" class="password-toggle-btn" onclick="togglePassword(event)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="valid-feedback">
+                            <i class="fas fa-check me-1"></i>Password looks good!
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">
+                                Remember me
+                            </label>
+                        </div>
+                        <a href="#" class="link-hover-underline small">Forgot password?</a>
+                    </div>
+
+                    <button class="btn btn-primary w-100 btn-lg mb-3" type="submit">
+                        <i class="fas fa-sign-in-alt me-2"></i>Sign In
+                    </button>
+
+                    <div class="text-center">
+                        <p class="text-muted mb-0">
+                            Don't have an account? 
+                            <a href="/register" class="link-hover-underline fw-bold">Create one now</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+
+            <div class="alert alert-info mt-4" role="alert">
+                <small>
+                    <i class="fas fa-info-circle me-2"></i>
+                    Demo credentials: username: <strong>demo</strong>, password: <strong>demo123</strong>
+                </small>
+            </div>
         </div>
     </div>
-    <button class="btn btn-success">Login</button>
-</form>
+</div>
+
+<script>
+function togglePassword(e) {
+    e.preventDefault();
+    const input = document.getElementById('password');
+    const icon = e.currentTarget.querySelector('i');
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+    } else {
+        input.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+    }
+}
+</script>

@@ -1,122 +1,135 @@
 <% layout('layouts/boilerplate')%>
-<style>
-    body {
-        background-color: #121212;
-        color: #ffffff;
-    }
-    .card {
-        background-color: #1e1e1e;
-        border: 1px solid #333;
-        color: #ffffff;
-    }
-    .card-title {
-        color: #ffffff;
-    }
-    .card-text {
-        color: #cccccc;
-    }
-    .text-muted {
-        color: #888 !important;
-    }
-    .btn-success {
-        background-color: #28a745;
-        border-color: #28a745;
-    }
-    .btn-success:hover {
-        background-color: #218838;
-        border-color: #1e7e34;
-    }
-    h1 {
-        color: #ffffff;
-    }
-    label {
-        color: #ffffff;
-    }
-    .form-control {
-        background-color: #2a2a2a;
-        border-color: #555;
-        color: #ffffff;
-    }
-    .form-control:focus {
-        background-color: #2a2a2a;
-        border-color: #007bff;
-        color: #ffffff;
-    }
-    .input-group-text {
-        background-color: #333;
-        border-color: #555;
-        color: #ffffff;
-    }
-    a {
-        color: #ffffff;
-    }
-    a:hover {
-        color: #cccccc;
-    }
-</style>
-<div class="row">
-    <h1 class="text-center">New Campground</h1>
-    <div class="col-6 offset-3">
-        <form action="/campgrounds" method="POST" novalidate class="validated-form">
-            <div class="mb-3">
-                <label class="form-label" for="title">Title</label>
-                <input class="form-control" type="text" id="title" name="campground[title]" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="location">Location</label>
-                <input class="form-control" type="text" id="location" name="campground[location]" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="country">Country</label>
-                <input class="form-control" type="text" id="country" name="campground[country]" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="image">Image Url</label>
-                <input class="form-control" type="text" id="image" name="campground[image]" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="images">Additional Images (comma-separated URLs)</label>
-                <input class="form-control" type="text" id="images" name="campground[images]" placeholder="https://example.com/image1.jpg, https://example.com/image2.jpg">
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="price">Campground Price</label>
-                <div class="input-group">
-                    <span class="input-group-text" id="price-label">$</span>
-                    <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price"
-                        aria-describedby="price-label" name="campground[price]" required>
-                </div>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-            </div>
 
-            <div class="mb-3">
-                <label class="form-label" for="description">Description</label>
-                <textarea class="form-control" type="text" id="description" name="campground[description]"
-                    required></textarea>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
+<div class="container-md py-5">
+    <div class="mb-5">
+        <h1 class="mb-2">
+            <i class="fas fa-plus-circle text-success me-2"></i>Add New Campground
+        </h1>
+        <p class="text-muted">Share your favorite camping spot with the community</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="form-section">
+                <h3 class="form-section-title mb-4">Campground Information</h3>
+                
+                <form action="/campgrounds" method="POST" novalidate class="validated-form">
+                    <!-- Basic Information -->
+                    <div class="form-row">
+                        <div>
+                            <label class="form-label" for="title">
+                                <i class="fas fa-heading text-primary me-1"></i>Campground Title*
+                            </label>
+                            <input class="form-control" type="text" id="title" name="campground[title]" 
+                                placeholder="e.g., Mountain Peak Lodge" required>
+                            <div class="valid-feedback">
+                                <i class="fas fa-check me-1"></i>Looks good!
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Location Information -->
+                    <div class="form-row">
+                        <div>
+                            <label class="form-label" for="location">
+                                <i class="fas fa-map-pin text-primary me-1"></i>Location/City*
+                            </label>
+                            <input class="form-control" type="text" id="location" name="campground[location]" 
+                                placeholder="e.g., Denver" required>
+                            <div class="valid-feedback">
+                                <i class="fas fa-check me-1"></i>Looks good!
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="form-label" for="country">
+                                <i class="fas fa-globe text-primary me-1"></i>Country*
+                            </label>
+                            <input class="form-control" type="text" id="country" name="campground[country]" 
+                                placeholder="e.g., United States" required>
+                            <div class="valid-feedback">
+                                <i class="fas fa-check me-1"></i>Looks good!
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="form-row">
+                        <div>
+                            <label class="form-label" for="price">
+                                <i class="fas fa-dollar-sign text-primary me-1"></i>Price Per Night*
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text">$</span>
+                                <input type="text" class="form-control" id="price" placeholder="0.00" 
+                                    name="campground[price]" required>
+                                <span class="input-group-text">/night</span>
+                            </div>
+                            <div class="valid-feedback">
+                                <i class="fas fa-check me-1"></i>Looks good!
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="form-group-vertical">
+                        <label class="form-label" for="description">
+                            <i class="fas fa-pen-fancy text-primary me-1"></i>Description*
+                        </label>
+                        <textarea class="form-control" id="description" name="campground[description]" 
+                            rows="5" placeholder="Describe your campground. What makes it special? What amenities are available?" 
+                            required></textarea>
+                        <small class="text-muted">
+                            <i class="fas fa-info-circle me-1"></i>Provide detailed information to help other campers
+                        </small>
+                        <div class="valid-feedback">
+                            <i class="fas fa-check me-1"></i>Looks good!
+                        </div>
+                    </div>
+
+                    <!-- Images Section -->
+                    <div class="border-top pt-4 mt-4">
+                        <h5 class="mb-3">
+                            <i class="fas fa-images text-primary me-2"></i>Images
+                        </h5>
+
+                        <div class="form-group-vertical">
+                            <label class="form-label" for="image">
+                                <i class="fas fa-image text-primary me-1"></i>Main Image URL*
+                            </label>
+                            <input class="form-control" type="text" id="image" name="campground[image]" 
+                                placeholder="https://example.com/image.jpg" required>
+                            <small class="text-muted">
+                                <i class="fas fa-info-circle me-1"></i>This will be displayed on campground cards
+                            </small>
+                            <div class="valid-feedback">
+                                <i class="fas fa-check me-1"></i>Looks good!
+                            </div>
+                        </div>
+
+                        <div class="form-group-vertical">
+                            <label class="form-label" for="images">
+                                <i class="fas fa-images text-primary me-1"></i>Additional Images (Optional)
+                            </label>
+                            <textarea class="form-control" id="images" name="campground[images]" rows="3"
+                                placeholder="https://example.com/image1.jpg, https://example.com/image2.jpg, https://example.com/image3.jpg"></textarea>
+                            <small class="text-muted">
+                                <i class="fas fa-info-circle me-1"></i>Enter URLs separated by commas
+                            </small>
+                        </div>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="d-flex gap-3 mt-5">
+                        <button class="btn btn-success btn-lg" type="submit">
+                            <i class="fas fa-check me-2"></i>Add Campground
+                        </button>
+                        <a href="/campgrounds" class="btn btn-outline-secondary btn-lg">
+                            <i class="fas fa-times me-2"></i>Cancel
+                        </a>
+                    </div>
+                </form>
             </div>
-            <div class="mb-3">
-                <button class="btn btn-success">Add Campground</button>
-            </div>
-        </form>
-        <a href="/campgrounds">All Campgrounds</a>
+        </div>
     </div>
 </div>

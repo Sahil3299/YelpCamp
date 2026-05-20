@@ -1,30 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YelpCamp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="YelpCamp - Discover and share the best campgrounds around the world">
+    <meta name="theme-color" content="#ffffff">
+    <title>YelpCamp - Discover Amazing Campgrounds</title>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
-        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <!-- Bootstrap 5.3 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+        integrity="sha384-9ndCyUaIbzAi2FUarbnLuTLV3H3dWt4pJnicqX/j0NYtSuA+V5vdc6QWmN+cVzn5Z" crossorigin="anonymous">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVJkEzyD6lkDNlzVFlQkqysKWsThvkeI9QKart641sXuLtnXP+LOBvarAOBvJ3nbrwI06dwQ7fQ==" crossorigin="anonymous">
+
+    <!-- Google Fonts - Inter & Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/stylesheets/theme.css">
+    <link rel="stylesheet" href="/stylesheets/components.css">
+    <link rel="stylesheet" href="/stylesheets/animations.css">
+    <link rel="stylesheet" href="/stylesheets/app.css">
+    <link rel="stylesheet" href="/stylesheets/responsive.css">
 </head>
 
-<body class="d-flex flex-column vh-100">
+<body class="d-flex flex-column">
     <%- include('../partials/navbar')%>
-    <main class="container mt-5">
-        <%- include('../partials/flash')%>
-        <%- body %>
+    <main class="main-content flex-grow-1">
+        <div class="container-lg">
+            <%- include('../partials/flash')%>
+            <%- body %>
+        </div>
     </main>
     <%- include('../partials/footer')%>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
-        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
-        crossorigin="anonymous"></script>
 
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyou6Cd4S0vJfvmZgpX5bE+hVlJ5fTbXrPEFn0"
+        crossorigin="anonymous"></script>
+    
+    <!-- Bootstrap 5.3 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+        integrity="sha384-fbbOQedDnW4V7XnOnxeWqWLVnFjlWM6DVUj34lIEsLEkD0B5S4Mq93aITmJ/g3IAo" crossorigin="anonymous"></script>
+
+    <!-- Form Validation -->
     <script src='/javascripts/validateForms.js'></script>
+    
+    <!-- Custom Animations & Interactions -->
+    <script src='/javascripts/animations.js'></script>
+    
+    <!-- Theme Toggle -->
+    <script src='/javascripts/theme.js'></script>
 </body>
 
 </html>

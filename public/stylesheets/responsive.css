@@ -1,0 +1,682 @@
+/* ============================================
+   YELPCAMP RESPONSIVE DESIGN
+   Mobile, Tablet, Desktop Optimization
+   ============================================ */
+
+/* ===== MOBILE FIRST (DEFAULT) ===== */
+/* Styles are mobile-first, these enhance for larger screens */
+
+/* ===== EXTRA SMALL DEVICES (< 576px) ===== */
+@media (max-width: 575.98px) {
+    html {
+        font-size: 14px;
+    }
+
+    body {
+        font-size: 0.9rem;
+    }
+
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.25rem;
+    }
+
+    .section {
+        padding: 2rem 1rem;
+    }
+
+    .section-title {
+        font-size: 1.75rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .section-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .section-divider {
+        width: 60px;
+        margin-bottom: 1rem;
+    }
+
+    /* HERO SECTION */
+    .hero {
+        min-height: 70vh;
+        padding: 2rem 1rem;
+    }
+
+    .hero-content {
+        padding: 1rem;
+    }
+
+    .hero-title {
+        font-size: 1.75rem;
+        margin-bottom: 0.75rem;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .hero-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 0 0.5rem;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        font-size: 0.95rem;
+        padding: 0.65rem 1rem;
+    }
+
+    /* NAVBAR */
+    .navbar {
+        padding: 0.75rem 0;
+    }
+
+    .navbar-brand {
+        font-size: 1.25rem;
+        margin-right: 1rem;
+    }
+
+    .navbar-toggler {
+        border: none;
+        padding: 0.4rem 0.6rem;
+    }
+
+    .navbar-toggler:focus {
+        box-shadow: none;
+        outline: 2px solid var(--primary);
+    }
+
+    .navbar-collapse {
+        margin-top: 1rem;
+        background: var(--bg-secondary);
+        padding: 1rem;
+        border-radius: var(--radius-md);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-nav {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .navbar-nav .nav-item {
+        width: 100%;
+        margin: 0;
+    }
+
+    .navbar-nav .nav-link {
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .navbar-nav .nav-item:last-child .nav-link {
+        border-bottom: none;
+    }
+
+    .navbar-nav .btn {
+        width: 100%;
+        margin: 0.5rem 0;
+        padding: 0.65rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .dropdown-menu {
+        background: var(--bg-secondary) !important;
+        border: 1px solid var(--border-color);
+        min-width: calc(100vw - 2rem) !important;
+        left: -1rem !important;
+        right: -1rem !important;
+    }
+
+    /* GRID & CARDS */
+    .grid-cards {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .grid-cards-2,
+    .grid-cards-3 {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .campground-card {
+        max-width: 100%;
+    }
+
+    .campground-card-image {
+        height: 200px;
+    }
+
+    .campground-card-body {
+        padding: 1.25rem;
+    }
+
+    .campground-card-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .campground-card-description {
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+
+    /* CONTAINERS */
+    .container-lg {
+        padding: 0 1rem;
+    }
+
+    .detail-info-box {
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .form-section {
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    /* BUTTONS */
+    .btn {
+        padding: 0.65rem 1.2rem;
+        font-size: 0.9rem;
+        border-radius: var(--radius-md);
+    }
+
+    .btn-lg {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.95rem;
+    }
+
+    .btn-sm {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.85rem;
+    }
+
+    /* CARDS */
+    .card {
+        margin-bottom: 1.5rem;
+    }
+
+    .card-body {
+        padding: 1.25rem;
+    }
+
+    .card-title {
+        font-size: 1.1rem;
+    }
+
+    /* DETAIL PAGE */
+    .detail-meta {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .review-card {
+        margin-bottom: 1.5rem;
+        padding: 1.25rem;
+    }
+
+    .review-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+        margin-bottom: 0.75rem;
+    }
+
+    /* FORMS */
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    textarea,
+    select {
+        padding: 0.65rem 0.75rem;
+        font-size: 0.95rem;
+    }
+
+    .form-label {
+        font-size: 0.95rem;
+        margin-bottom: 0.5rem;
+    }
+
+    /* TABLES */
+    .table {
+        font-size: 0.85rem;
+    }
+
+    .table th,
+    .table td {
+        padding: 0.75rem 0.5rem;
+    }
+
+    /* MODALS */
+    .modal-content {
+        border-radius: var(--radius-lg);
+    }
+
+    .modal-body {
+        padding: 1.5rem;
+    }
+
+    /* FOOTER */
+    .footer {
+        padding: 2rem 1rem;
+    }
+
+    .gallery {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .campground-card-image {
+        height: 180px;
+    }
+
+    #cluster-map {
+        height: 300px;
+    }
+
+    #map {
+        height: 250px;
+    }
+
+    .detail-hero {
+        height: 250px;
+    }
+}
+
+/* ===== SMALL DEVICES (576px - 767px) ===== */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    .section {
+        padding: 3rem 0;
+    }
+
+    .grid-cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .grid-cards-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .navbar-nav {
+        flex-direction: column;
+    }
+
+    .detail-meta {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ===== MEDIUM DEVICES (768px - 991px) - TABLETS ===== */
+@media (min-width: 768px) {
+    .section {
+        padding: 4rem 0;
+    }
+
+    .grid-cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+
+    .grid-cards-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .detail-meta {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .form-section {
+        padding: 2rem;
+    }
+}
+
+/* ===== LARGE DEVICES (992px - 1199px) - DESKTOPS ===== */
+@media (min-width: 992px) {
+    .grid-cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .grid-cards-md {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .grid-cards-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .grid-cards-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .detail-meta {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .gallery {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .navbar-nav {
+        flex-direction: row;
+    }
+}
+
+/* ===== EXTRA LARGE DEVICES (1200px+) ===== */
+@media (min-width: 1200px) {
+    .container,
+    .container-lg {
+        max-width: 1140px;
+    }
+
+    .grid-cards {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .grid-cards-md {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ===== XXL DEVICES (1400px+) ===== */
+@media (min-width: 1400px) {
+    .container,
+    .container-lg {
+        max-width: 1320px;
+    }
+}
+
+/* ===== LANDSCAPE ORIENTATION ===== */
+@media (orientation: landscape) and (max-height: 600px) {
+    .hero {
+        min-height: auto;
+        height: 70vh;
+    }
+
+    .detail-hero {
+        height: 300px;
+    }
+
+    .section {
+        padding: 2rem 0;
+    }
+}
+
+/* ===== HIGH DPI DISPLAYS ===== */
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+    /* Optimize for retina displays */
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+/* ===== TOUCH DEVICES ===== */
+@media (hover: none) and (pointer: coarse) {
+    /* Remove hover effects on touch devices */
+    .hover-lift,
+    .hover-shadow,
+    .hover-grow,
+    .card:hover,
+    .btn:hover {
+        transform: none !important;
+    }
+
+    /* Increase tap target size */
+    .btn,
+    a,
+    button {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    /* Better spacing for touch */
+    .list-group-item {
+        padding: 1.25rem;
+    }
+
+    .card-body {
+        padding: 1.5rem;
+    }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+    body {
+        background: white;
+    }
+
+    .navbar,
+    .footer,
+    .btn,
+    .navbar-toggler {
+        display: none !important;
+    }
+
+    .main-content {
+        padding: 0;
+    }
+
+    .card {
+        page-break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+
+    a {
+        color: #000;
+        text-decoration: underline;
+    }
+}
+
+/* ===== DARK MODE RESPONSIVE ===== */
+@media (prefers-color-scheme: dark) {
+    [data-theme="auto"] {
+        --color-bg-primary: #0f172a;
+        --color-bg-secondary: #1e293b;
+        --color-text-primary: #f8fafc;
+        --color-text-secondary: #cbd5e1;
+    }
+}
+
+/* ===== LIGHT MODE RESPONSIVE ===== */
+@media (prefers-color-scheme: light) {
+    [data-theme="auto"] {
+        --color-bg-primary: #ffffff;
+        --color-bg-secondary: #f9fafb;
+        --color-text-primary: #111827;
+        --color-text-secondary: #4b5563;
+    }
+}
+
+/* ===== CONTRAST PREFERENCES ===== */
+@media (prefers-contrast: more) {
+    :root {
+        --color-primary: #1550e0;
+        --color-text-primary: #000000;
+        --color-text-secondary: #333333;
+        --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .card,
+    .form-control {
+        border-width: 2px;
+    }
+}
+
+/* ===== REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* ===== FORCED COLORS MODE (HIGH CONTRAST) ===== */
+@media (forced-colors: active) {
+    .card {
+        border: 2px solid CanvasText;
+    }
+
+    .btn {
+        border: 2px solid CanvasText;
+    }
+
+    a {
+        text-decoration: underline;
+    }
+}
+
+/* ===== UTILITY RESPONSIVE CLASSES ===== */
+.d-none-sm {
+    display: none;
+}
+
+@media (min-width: 576px) {
+    .d-none-sm {
+        display: block;
+    }
+}
+
+.d-none-md {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .d-none-md {
+        display: block;
+    }
+}
+
+.d-none-lg {
+    display: none;
+}
+
+@media (min-width: 992px) {
+    .d-none-lg {
+        display: block;
+    }
+}
+
+.d-block-sm {
+    display: block;
+}
+
+@media (min-width: 576px) {
+    .d-block-sm {
+        display: none;
+    }
+}
+
+.d-block-md {
+    display: block;
+}
+
+@media (min-width: 768px) {
+    .d-block-md {
+        display: none;
+    }
+}
+
+/* ===== FULL-WIDTH ON MOBILE ===== */
+.full-width-sm {
+    width: 100%;
+}
+
+@media (min-width: 576px) {
+    .full-width-sm {
+        width: auto;
+    }
+}
+
+/* ===== PADDING RESPONSIVE ===== */
+.p-responsive {
+    padding: 1rem;
+}
+
+@media (min-width: 768px) {
+    .p-responsive {
+        padding: 2rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .p-responsive {
+        padding: 3rem;
+    }
+}
+
+/* ===== MARGIN RESPONSIVE ===== */
+.mt-responsive {
+    margin-top: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .mt-responsive {
+        margin-top: 3rem;
+    }
+}
+
+.mb-responsive {
+    margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .mb-responsive {
+        margin-bottom: 3rem;
+    }
+}

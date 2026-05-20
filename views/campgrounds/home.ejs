@@ -1,103 +1,295 @@
 <% layout('layouts/boilerplate')%>
-<style>
-    .hero-section {
-        background-image: url('https://codegift.ee/wp-content/uploads/2022/01/yelpcamp_background.jpg');
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-    }
-    .hero-overlay {
-        /* background-color: rgba(0, 0, 0, 0.7); */
-        width: 100%;
-        padding: 5rem 0;
-        color: #ffffff;
-    }
-    body {
-        background-color: #121212;
-        color: #ffffff;
-    }
-    .card {
-        background-color: #1e1e1e;
-        border: 1px solid #333;
-        color: #ffffff;
-    }
-    .card-title {
-        color: #ffffff;
-    }
-    .card-text {
-        color: #cccccc;
-    }
-    .btn-outline-primary {
-        color: #ffffff;
-        border-color: #ffffff;
-    }
-    .btn-outline-primary:hover {
-        background-color: #ffffff;
-        color: #000000;
-    }
-    .btn-outline-secondary {
-        color: #cccccc;
-        border-color: #cccccc;
-    }
-    .btn-outline-secondary:hover {
-        background-color: #cccccc;
-        color: #000000;
-    }
-    .btn-outline-danger {
-        color: #ff6b6b;
-        border-color: #ff6b6b;
-    }
-    .btn-outline-danger:hover {
-        background-color: #ff6b6b;
-        color: #ffffff;
-    }
-</style>
-<div class="hero-section">
-    <div class="hero-overlay">
-        <div class="container-fluid">
-            <h1 class="display-4 fw-bold text-center">Welcome to YelpCamp!</h1>
-            <p class="col-md-8 fs-4 mx-auto text-center">Discover and share the best campgrounds around the world. Read reviews, leave your own, and plan your next adventure.</p>
-            <div class="text-center">
-                <a class="btn btn-light btn-lg" href="/campgrounds">View Campgrounds</a>
-            </div>
-        </div>
-    </div>
-</div>
 
-<div class="row mt-5">
-    <div class="col-md-4">
-        <div class="card h-100">
-            <div class="card-body">
-                <h5 class="card-title">Explore Campgrounds</h5>
-                <p class="card-text">Browse through thousands of campgrounds submitted by users. Find the perfect spot for your next trip.</p>
-                <a href="/campgrounds" class="btn btn-primary">Explore</a>
-            </div>
+<!-- Hero Section -->
+<section class="hero" style="background-image: url('https://codegift.ee/wp-content/uploads/2022/01/yelpcamp_background.jpg')">
+    <div class="hero-content">
+        <h1 class="hero-title">Welcome to YelpCamp</h1>
+        <p class="hero-subtitle">Discover and share the best campgrounds around the world</p>
+        <div class="hero-buttons">
+            <a href="/campgrounds" class="btn btn-light btn-lg">
+                <i class="fas fa-search me-2"></i>Explore Campgrounds
+            </a>
+            <a href="/campgrounds/new" class="btn btn-outline-primary btn-lg">
+                <i class="fas fa-plus me-2"></i>Add Campground
+            </a>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="card h-100">
-            <div class="card-body">
-                <h5 class="card-title">Share Your Experience</h5>
-                <p class="card-text">Have a favorite campground? Add it to our site and help others discover amazing places.</p>
-                <a href="/campgrounds/new" class="btn btn-success">Add Campground</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card h-100">
-            <div class="card-body">
-                <h5 class="card-title">Read Reviews</h5>
-                <p class="card-text">See what other campers have to say. Honest reviews to help you make informed decisions.</p>
-                <a href="/campgrounds" class="btn btn-info">Read Reviews</a>
-            </div>
-        </div>
-    </div>
-</div>
+</section>
 
-<div class="mt-5 text-center">
+<!-- Featured Campgrounds Section -->
+<section class="section bg-light">
+    <div class="container-lg">
+        <h2 class="section-title">Featured Campgrounds</h2>
+        <div class="section-divider"></div>
+        <p class="section-subtitle">Explore handpicked campgrounds from our community</p>
+        
+        <div class="grid-cards mt-5">
+            <div class="campground-card stagger-item hover-lift">
+                <div class="campground-card-image image-hover-overlay">
+                    <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=500" alt="Mountain Retreat" class="w-100 h-100" style="object-fit: cover;">
+                    <span class="campground-card-badge">Popular</span>
+                </div>
+                <div class="campground-card-body">
+                    <h5 class="campground-card-title">Mountain Peak Lodge</h5>
+                    <p class="campground-card-description">Experience stunning mountain views and premium amenities at our flagship campground.</p>
+                    <div class="campground-card-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Colorado, USA</span>
+                    </div>
+                    <div class="campground-card-footer">
+                        <div>
+                            <div class="campground-card-price">$89<small>/night</small></div>
+                        </div>
+                        <a href="/campgrounds" class="btn btn-primary btn-sm campground-card-btn">View</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="campground-card stagger-item hover-lift">
+                <div class="campground-card-image image-hover-overlay">
+                    <img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=500" alt="Forest Camp" class="w-100 h-100" style="object-fit: cover;">
+                    <span class="campground-card-badge">New</span>
+                </div>
+                <div class="campground-card-body">
+                    <h5 class="campground-card-title">Forest Haven Camp</h5>
+                    <p class="campground-card-description">Immerse yourself in nature with our newly opened camping site nestled in ancient forests.</p>
+                    <div class="campground-card-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Oregon, USA</span>
+                    </div>
+                    <div class="campground-card-footer">
+                        <div>
+                            <div class="campground-card-price">$65<small>/night</small></div>
+                        </div>
+                        <a href="/campgrounds" class="btn btn-primary btn-sm campground-card-btn">View</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="campground-card stagger-item hover-lift">
+                <div class="campground-card-image image-hover-overlay">
+                    <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=500" alt="Beach Camp" class="w-100 h-100" style="object-fit: cover;">
+                    <span class="campground-card-badge">Best Rated</span>
+                </div>
+                <div class="campground-card-body">
+                    <h5 class="campground-card-title">Coastal Paradise</h5>
+                    <p class="campground-card-description">Wake up to ocean breezes and pristine beaches at our exclusive coastal campground.</p>
+                    <div class="campground-card-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>California, USA</span>
+                    </div>
+                    <div class="campground-card-footer">
+                        <div>
+                            <div class="campground-card-price">$125<small>/night</small></div>
+                        </div>
+                        <a href="/campgrounds" class="btn btn-primary btn-sm campground-card-btn">View</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="campground-card stagger-item hover-lift">
+                <div class="campground-card-image image-hover-overlay">
+                    <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=500" alt="Desert Camp" class="w-100 h-100" style="object-fit: cover;">
+                    <span class="campground-card-badge">Adventure</span>
+                </div>
+                <div class="campground-card-body">
+                    <h5 class="campground-card-title">Desert Dreams</h5>
+                    <p class="campground-card-description">Explore vast desert landscapes and stunning starry nights in this unique camping experience.</p>
+                    <div class="campground-card-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Arizona, USA</span>
+                    </div>
+                    <div class="campground-card-footer">
+                        <div>
+                            <div class="campground-card-price">$45<small>/night</small></div>
+                        </div>
+                        <a href="/campgrounds" class="btn btn-primary btn-sm campground-card-btn">View</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="campground-card stagger-item hover-lift">
+                <div class="campground-card-image image-hover-overlay">
+                    <img src="https://images.unsplash.com/photo-1492648272180-81342ee5ff30?w=500" alt="Lake Camp" class="w-100 h-100" style="object-fit: cover;">
+                    <span class="campground-card-badge">Relaxing</span>
+                </div>
+                <div class="campground-card-body">
+                    <h5 class="campground-card-title">Lakeside Serenity</h5>
+                    <p class="campground-card-description">Perfect for families, our lakeside resort offers water sports and peaceful nature walks.</p>
+                    <div class="campground-card-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Minnesota, USA</span>
+                    </div>
+                    <div class="campground-card-footer">
+                        <div>
+                            <div class="campground-card-price">$75<small>/night</small></div>
+                        </div>
+                        <a href="/campgrounds" class="btn btn-primary btn-sm campground-card-btn">View</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="campground-card stagger-item hover-lift">
+                <div class="campground-card-image image-hover-overlay">
+                    <img src="https://images.unsplash.com/photo-1489759337279-2a5a42b5f6eb?w=500" alt="Alpine Camp" class="w-100 h-100" style="object-fit: cover;">
+                    <span class="campground-card-badge">Scenic</span>
+                </div>
+                <div class="campground-card-body">
+                    <h5 class="campground-card-title">Alpine Adventure</h5>
+                    <p class="campground-card-description">Challenge yourself with high-altitude hiking and breathtaking alpine meadows.</p>
+                    <div class="campground-card-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Montana, USA</span>
+                    </div>
+                    <div class="campground-card-footer">
+                        <div>
+                            <div class="campground-card-price">$85<small>/night</small></div>
+                        </div>
+                        <a href="/campgrounds" class="btn btn-primary btn-sm campground-card-btn">View</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-5">
+            <a href="/campgrounds" class="btn btn-primary btn-lg">
+                <i class="fas fa-arrow-right me-2"></i>View All Campgrounds
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="section">
+    <div class="container-lg">
+        <h2 class="section-title">Why Choose YelpCamp?</h2>
+        <div class="section-divider"></div>
+        <p class="section-subtitle">Everything you need for your camping adventure</p>
+
+        <div class="grid-cards mt-5">
+            <div class="card stagger-item hover-shadow">
+                <div class="card-body text-center py-4">
+                    <div class="mb-3">
+                        <i class="fas fa-map-location-dot fa-3x text-primary"></i>
+                    </div>
+                    <h5 class="card-title">Discover Locations</h5>
+                    <p class="card-text">Find campgrounds all around the world with detailed information and user reviews.</p>
+                </div>
+            </div>
+
+            <div class="card stagger-item hover-shadow">
+                <div class="card-body text-center py-4">
+                    <div class="mb-3">
+                        <i class="fas fa-star fa-3x text-warning"></i>
+                    </div>
+                    <h5 class="card-title">Read Reviews</h5>
+                    <p class="card-text">Get honest reviews from real campers to help you make the best choice.</p>
+                </div>
+            </div>
+
+            <div class="card stagger-item hover-shadow">
+                <div class="card-body text-center py-4">
+                    <div class="mb-3">
+                        <i class="fas fa-pen-fancy fa-3x text-success"></i>
+                    </div>
+                    <h5 class="card-title">Share Experience</h5>
+                    <p class="card-text">Submit your favorite campgrounds and help other travelers find their perfect spot.</p>
+                </div>
+            </div>
+
+            <div class="card stagger-item hover-shadow">
+                <div class="card-body text-center py-4">
+                    <div class="mb-3">
+                        <i class="fas fa-shield-halved fa-3x text-info"></i>
+                    </div>
+                    <h5 class="card-title">Trusted Community</h5>
+                    <p class="card-text">Join thousands of outdoor enthusiasts sharing their camping experiences.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="section bg-light">
+    <div class="container-lg">
+        <h2 class="section-title">What Campers Say</h2>
+        <div class="section-divider"></div>
+        <p class="section-subtitle">Real reviews from our community</p>
+
+        <div class="grid-cards mt-5">
+            <div class="testimonial-card stagger-item">
+                <div class="d-flex gap-2 mb-3">
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                </div>
+                <p class="testimonial-text">"YelpCamp helped me find the most amazing campgrounds! The reviews are detailed and the site is so easy to use."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">JD</div>
+                    <div>
+                        <p class="testimonial-author-name">John Davis</p>
+                        <p class="testimonial-author-role">Outdoor Enthusiast</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card stagger-item">
+                <div class="d-flex gap-2 mb-3">
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                </div>
+                <p class="testimonial-text">"I've discovered 15+ new campgrounds through YelpCamp. The community feedback is invaluable for planning trips."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar" style="background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);">SM</div>
+                    <div>
+                        <p class="testimonial-author-name">Sarah Mitchell</p>
+                        <p class="testimonial-author-role">Travel Blogger</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card stagger-item">
+                <div class="d-flex gap-2 mb-3">
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                </div>
+                <p class="testimonial-text">"The best platform for camping recommendations. Clean design, accurate information, and helpful community!"</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar" style="background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);">MC</div>
+                    <div>
+                        <p class="testimonial-author-name">Mike Chen</p>
+                        <p class="testimonial-author-role">Nature Photographer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section bg-primary text-white">
+    <div class="container-lg text-center">
+        <h2 class="section-title text-white mb-3">Ready for Your Next Adventure?</h2>
+        <p class="section-subtitle text-white mb-4">Join thousands of campers exploring the world's best campgrounds</p>
+        <div class="d-flex gap-3 justify-content-center flex-wrap">
+            <a href="/campgrounds" class="btn btn-light btn-lg">
+                <i class="fas fa-search me-2"></i>Browse Campgrounds
+            </a>
+            <a href="/register" class="btn btn-outline-light btn-lg">
+                <i class="fas fa-user-plus me-2"></i>Join Today
+            </a>
+        </div>
+    </div>
+</section>
     <h2>Ready to Start Camping?</h2>
     <p class="lead">Join our community of outdoor enthusiasts today.</p>
     <% if(!currentUser) {%>

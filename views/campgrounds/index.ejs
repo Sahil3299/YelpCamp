@@ -1,60 +1,69 @@
 <% layout('layouts/boilerplate')%>
-<style>
-    body {
-        background-color: #121212;
-        color: #ffffff;
-    }
-    .card {
-        background-color: #1e1e1e;
-        border: 1px solid #333;
-        color: #ffffff;
-    }
-    .card-title {
-        color: #ffffff;
-    }
-    .card-text {
-        color: #cccccc;
-    }
-    .text-muted {
-        color: #888 !important;
-    }
-    .btn-primary {
-        background-color: #007bff;
-        border-color: #007bff;
-    }
-    .btn-primary:hover {
-        background-color: #0056b3;
-        border-color: #004085;
-    }
-    h1 {
-        color: #ffffff;
-    }
-    a {
-        color: #ffffff;
-    }
-    a:hover {
-        color: #cccccc;
-    }
-</style>
 
-<h1 class="text-center">All Campgrounds</h1>
-<div class="mb-3 text-center">
-    <a href="/campgrounds/new" class="btn btn-success">Add Campground</a>
+<div class="mb-5">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+        <div>
+            <h1 class="mb-1">
+                <i class="fas fa-map-marked-alt text-primary me-2"></i>All Campgrounds
+            </h1>
+            <p class="text-muted mb-0"><%= campgrounds.length %> campgrounds available</p>
+        </div>
+        <a href="/campgrounds/new" class="btn btn-success btn-lg" title="Add a new campground">
+            <i class="fas fa-plus-circle me-2"></i>Add Campground
+        </a>
+    </div>
 </div>
-<div class="row">
+
+<% if(campgrounds.length === 0) {%>
+<div class="alert alert-info animate-fade-in-up" role="alert">
+    <div class="text-center py-5">
+        <i class="fas fa-inbox fa-3x text-info mb-3 d-block"></i>
+        <h5>No campgrounds yet</h5>
+        <p class="mb-3">Be the first to add a campground to our community!</p>
+        <a href="/campgrounds/new" class="btn btn-primary">
+            <i class="fas fa-plus me-2"></i>Add First Campground
+        </a>
+    </div>
+</div>
+<% } else {%>
+<div class="grid-cards">
     <% for (let campground of campgrounds){%>
-    <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card h-100">
-            <img class="card-img-top" alt="<%=campground.title%>" src="<%=campground.image%>">
-            <div class="card-body">
-                <h5 class="card-title"><%= campground.title %></h5>
-                <p class="card-text"><%= campground.description %></p>
-                <p class="card-text">
-                    <small class="text-muted"><%= campground.location%><% if(campground.country) { %>, <%= campground.country %><% } %></small>
-                </p>
-                <a class="btn btn-primary" href="/campgrounds/<%=campground._id%>">View <%=campground.title%></a>
+    <div class="campground-card stagger-item hover-lift">
+        <div class="campground-card-image image-hover-overlay">
+            <img src="<%= campground.image %>" alt="<%= campground.title %>" class="w-100 h-100" style="object-fit: cover;">
+            <% if(campground.author) {%>
+            <span class="campground-card-badge"><i class="fas fa-check me-1"></i>Verified</span>
+            <% } %>
+        </div>
+        <div class="campground-card-body">
+            <h5 class="campground-card-title"><%= campground.title %></h5>
+            <p class="campground-card-description">
+                <% if(campground.description && campground.description.length > 80) {%>
+                    <%= campground.description.substring(0, 80) %>...
+                <% } else {%>
+                    <%= campground.description %>
+                <% } %>
+            </p>
+            
+            <div class="campground-card-location">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>
+                    <%= campground.location %><% if(campground.country) { %>, <%= campground.country %><% } %>
+                </span>
+            </div>
+            
+            <div class="campground-card-footer">
+                <div>
+                    <div class="campground-card-price">
+                        $<%= campground.price %><small>/night</small>
+                    </div>
+                </div>
+                <a href="/campgrounds/<%=campground._id%>" class="btn btn-primary btn-sm campground-card-btn" title="View details">
+                    <i class="fas fa-arrow-right me-1"></i>View
+                </a>
             </div>
         </div>
     </div>
     <% }%>
 </div>
+<% }%>
