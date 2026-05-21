@@ -78,6 +78,12 @@
         width: 100%;
         font-size: 0.95rem;
         padding: 0.65rem 1rem;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .scroll-indicator {
+        display: none;
     }
 
     /* NAVBAR */
@@ -132,6 +138,24 @@
         margin: 0.5rem 0;
         padding: 0.65rem 1rem;
         font-size: 0.9rem;
+    }
+
+    .navbar-auth-group {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.65rem;
+        margin-top: 0.75rem;
+    }
+
+    .navbar-theme-item {
+        width: 100%;
+        margin-top: 0.75rem;
+    }
+
+    .navbar #theme-toggle {
+        width: 100%;
+        border-radius: var(--radius-md);
     }
 
     .dropdown-menu {
@@ -190,6 +214,15 @@
     .form-section {
         padding: 1.5rem;
         margin-bottom: 2rem;
+    }
+
+    .auth-page {
+        padding-top: 1.5rem;
+        padding-bottom: 3rem;
+    }
+
+    .auth-card {
+        margin-bottom: 0;
     }
 
     .form-row {
@@ -288,7 +321,30 @@
 
     /* FOOTER */
     .footer {
-        padding: 2rem 1rem;
+        padding: 1.5rem 1rem;
+    }
+
+    .footer h5,
+    .footer h6 {
+        font-size: 0.95rem;
+    }
+
+    .footer .row {
+        gap: 1.5rem;
+    }
+
+    .footer hr {
+        margin: 1rem 0;
+    }
+
+    .footer-social {
+        gap: 0.5rem;
+    }
+
+    .footer-social a {
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
     }
 
     .gallery {
@@ -374,6 +430,10 @@
 
     .form-section {
         padding: 2rem;
+    }
+
+    .auth-card {
+        margin-bottom: 0;
     }
 }
 

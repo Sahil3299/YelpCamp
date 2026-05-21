@@ -31,12 +31,17 @@
     --color-text-primary: #111827;
     --color-text-secondary: #4b5563;
     --color-text-tertiary: #6b7280;
+    --color-text-muted: #6b7280;
     --color-text-disabled: #9ca3af;
     --color-text-inverse: #ffffff;
 
     --color-border: #e5e7eb;
     --color-border-light: #f3f4f6;
     --color-divider: #d1d5db;
+    --bg-secondary: var(--color-bg-secondary);
+    --bg-hover: var(--color-bg-tertiary);
+    --border-color: var(--color-border);
+    --primary: var(--color-primary);
 
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
@@ -96,6 +101,7 @@
     --color-text-primary: #f8fafc;
     --color-text-secondary: #cbd5e1;
     --color-text-tertiary: #94a3b8;
+    --color-text-muted: #94a3b8;
     --color-text-disabled: #64748b;
     --color-text-inverse: #0f172a;
 

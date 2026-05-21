@@ -1,12 +1,15 @@
 <% layout('layouts/boilerplate')%>
 
-<div class="container-md py-5">
+<div class="container-md auth-page">
     <div class="row justify-content-center">
-        <div class="col-lg-5">
-            <div class="form-section">
-                <div class="text-center mb-4">
+        <div class="col-lg-5 auth-shell">
+            <div class="form-section auth-card">
+                <div class="text-center auth-header">
+                    <span class="auth-title-icon">
+                        <i class="fas fa-sign-in-alt"></i>
+                    </span>
                     <h1 class="mb-2">
-                        <i class="fas fa-sign-in-alt text-primary me-2"></i>Welcome Back
+                        Welcome Back
                     </h1>
                     <p class="text-muted">Sign in to your YelpCamp account</p>
                 </div>
@@ -14,7 +17,7 @@
                 <form action="/login" method="POST" class="validated-form" novalidate>
                     <div class="form-group-vertical mb-4">
                         <label class="form-label" for="username">
-                            <i class="fas fa-user text-primary me-1"></i>Username
+                            <i class="fas fa-user text-primary me-1"></i>Username<span class="required-mark">*</span>
                         </label>
                         <input class="form-control" type="text" id="username" name="username" 
                             placeholder="Enter your username" required autocomplete="username">
@@ -25,7 +28,7 @@
 
                     <div class="form-group-vertical mb-4">
                         <label class="form-label" for="password">
-                            <i class="fas fa-lock text-primary me-1"></i>Password
+                            <i class="fas fa-lock text-primary me-1"></i>Password<span class="required-mark">*</span>
                         </label>
                         <div class="password-toggle">
                             <input class="form-control" type="password" id="password" name="password" 
@@ -39,7 +42,7 @@
                         </div>
                     </div>
 
-                    <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div class="auth-options mb-4">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" id="rememberMe">
                             <label class="form-check-label" for="rememberMe">
@@ -54,7 +57,7 @@
                     </button>
 
                     <div class="text-center">
-                        <p class="text-muted mb-0">
+                        <p class="text-muted mb-0 auth-alt">
                             Don't have an account? 
                             <a href="/register" class="link-hover-underline fw-bold">Create one now</a>
                         </p>
@@ -62,7 +65,7 @@
                 </form>
             </div>
 
-            <div class="alert alert-info mt-4" role="alert">
+            <div class="alert alert-info auth-note" role="alert">
                 <small>
                     <i class="fas fa-info-circle me-2"></i>
                     Demo credentials: username: <strong>demo</strong>, password: <strong>demo123</strong>

@@ -5,10 +5,37 @@
 
 document.addEventListener('DOMContentLoaded', function () {
     // Initialize animations
+    initializeNavbarFallback();
     initializeScrollAnimations();
     initializeInteractiveElements();
     initializeTooltips();
 });
+
+/**
+ * Keep the responsive navbar usable even if Bootstrap JS is unavailable.
+ */
+function initializeNavbarFallback() {
+    const toggler = document.querySelector('.navbar-toggler');
+    if (!toggler) return;
+
+    const target = toggler.getAttribute('data-bs-target');
+    const collapse = target ? document.querySelector(target) : null;
+
+    if (!toggler || !collapse) return;
+
+    toggler.addEventListener('click', function () {
+        collapse.classList.toggle('nav-open');
+        const isExpanded = collapse.classList.contains('show') || collapse.classList.contains('nav-open');
+        toggler.setAttribute('aria-expanded', String(isExpanded));
+    });
+
+    collapse.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            collapse.classList.remove('nav-open');
+            toggler.setAttribute('aria-expanded', 'false');
+        });
+    });
+}
 
 /**
  * Initialize Scroll Reveal Animations
@@ -108,6 +135,8 @@ function createRipple(event) {
  * Initialize Bootstrap Tooltips
  */
 function initializeTooltips() {
+    if (typeof bootstrap === 'undefined' || !bootstrap.Tooltip) return;
+
     // Enable Bootstrap tooltips
     const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
     tooltipTriggerList.map(function (tooltipTriggerEl) {
