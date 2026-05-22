@@ -13,6 +13,19 @@ module.exports.isLoggedIn = (req, res, next) => {
 }
 
 module.exports.validateCampground = (req, res, next) => {
+    if (req.body.campground) {
+        const { images } = req.body.campground;
+
+        if (typeof images === 'string') {
+            req.body.campground.images = images
+                .split(',')
+                .map(img => img.trim())
+                .filter(Boolean);
+        } else if (!Array.isArray(images)) {
+            req.body.campground.images = [];
+        }
+    }
+
     const { error } = campgroundSchema.validate(req.body);
     if (error) {
         const msg = error.details.map(el => el.message).join(',')
