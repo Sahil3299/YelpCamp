@@ -1,20 +1,13 @@
 const mongoose = require('mongoose');
+require('../utils/loadEnv')();
 const campgrounds = require('./campgrounds');
 const Campground = require('../models/campground');
 const User = require('../models/user');
 
-mongoose.connect('mongodb://localhost:27017/yelp-camp', {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true
-});
-
-const db = mongoose.connection;
-
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", () => {
-    console.log("Database connected");
-});
+const dbUrl = process.env.MONGO_URI || process.env.DATABASE_URL || 'mongodb://localhost:27017/yelp-camp';
+const hasPlaceholderMongoCredentials = /\/\/username:password@/i.test(dbUrl);
+const isMongoAuthError = err =>
+    err && /requires authentication|authentication failed|auth failed/i.test(err.message);
 
 const seedDB = async () => {
     try {
@@ -40,12 +33,37 @@ const seedDB = async () => {
             await newCamp.save();
         }
 
-        console.log(`✓ Seeded ${campgrounds.length} campgrounds successfully!`);
+        console.log(`Seeded ${campgrounds.length} Indian campgrounds successfully!`);
     } catch (error) {
         console.error('Seeding error:', error);
     }
 };
 
-seedDB().then(() => {
-    mongoose.connection.close();
-});
+const runSeed = async () => {
+    if (hasPlaceholderMongoCredentials) {
+        console.error('MongoDB setup error: .env still contains username:password.');
+        console.error('Replace it with your real MongoDB login before running the seed script.');
+        process.exit(1);
+    }
+
+    try {
+        await mongoose.connect(dbUrl, {
+            useNewUrlParser: true,
+            useCreateIndex: true,
+            useUnifiedTopology: true
+        });
+
+        console.log("Database connected");
+        await seedDB();
+    } catch (err) {
+        if (isMongoAuthError(err)) {
+            console.error('MongoDB authentication failed. Check MONGO_URI in .env.');
+        } else {
+            console.error('MongoDB connection error:', err.message);
+        }
+    } finally {
+        await mongoose.connection.close();
+    }
+};
+
+runSeed();

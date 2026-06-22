@@ -22,27 +22,30 @@
     <!-- Left Column - Images and Details -->
     <div class="col-lg-7">
         <!-- Image Carousel -->
-        <div id="imageCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="<%= campground.image%>" class="d-block w-100 rounded" alt="<%= campground.title %>" style="height: 450px; object-fit: cover;">
-                </div>
-                <% if(campground.images && campground.images.length > 0) { %>
-                    <% campground.images.forEach((img, index) => { %>
-                    <div class="carousel-item">
-                        <img src="<%= img %>" class="d-block w-100 rounded" alt="<%= campground.title %>" style="height: 450px; object-fit: cover;">
-                    </div>
-                    <% }); %>
-                <% } %>
+        <% const galleryImages = [campground.image, ...((campground.images || []))].filter(Boolean).filter((img, index, arr) => arr.indexOf(img) === index); %>
+        <div id="imageCarousel" class="carousel slide campground-carousel mb-4" data-bs-ride="carousel" data-bs-interval="4500" data-bs-pause="hover" data-bs-touch="true">
+            <% if(galleryImages.length > 1) { %>
+            <div class="carousel-indicators campground-carousel-indicators">
+                <% galleryImages.forEach((img, index) => { %>
+                <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="<%= index %>" class="<%= index === 0 ? 'active' : '' %>" aria-current="<%= index === 0 ? 'true' : 'false' %>" aria-label="Show image <%= index + 1 %>"></button>
+                <% }) %>
             </div>
-            <% if((campground.images && campground.images.length > 0) || true) { %>
-            <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
+            <% } %>
+
+            <div class="carousel-inner">
+                <% galleryImages.forEach((img, index) => { %>
+                <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
+                    <img src="<%= img %>" class="d-block w-100" alt="<%= campground.title %> image <%= index + 1 %>">
+                </div>
+                <% }) %>
+            </div>
+
+            <% if(galleryImages.length > 1) { %>
+            <button class="carousel-control-prev campground-carousel-control" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev" aria-label="Previous image">
+                <span aria-hidden="true"><i class="fas fa-chevron-left"></i></span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
+            <button class="carousel-control-next campground-carousel-control" type="button" data-bs-target="#imageCarousel" data-bs-slide="next" aria-label="Next image">
+                <span aria-hidden="true"><i class="fas fa-chevron-right"></i></span>
             </button>
             <% } %>
         </div>
@@ -65,7 +68,7 @@
                 </div>
                 <div class="text-end">
                     <div class="campground-card-price">
-                        $<%= campground.price %><small>/night</small>
+                        Rs. <%= campground.price %><small>/night</small>
                     </div>
                 </div>
             </div>
@@ -113,6 +116,14 @@
                         <p><%= campground.reviews.length %> reviews</p>
                     </div>
                 </div>
+            </div>
+
+            <div class="map-label mt-4">
+                <i class="fas fa-map me-2"></i>Location map
+            </div>
+            <div class="map-shell detail-map-shell">
+                <div class="map-skeleton" aria-hidden="true"></div>
+                <div id="map" class="map-panel detail-map marketplace-map"></div>
             </div>
 
             <!-- Edit/Delete Actions for Owner -->
@@ -236,3 +247,30 @@
         </div>
     </div>
 </div>
+
+<script>
+    window.campground = <%- JSON.stringify({
+        _id: campground._id,
+        title: campground.title,
+        location: campground.location,
+        country: campground.country,
+        description: campground.description,
+        geometry: campground.geometry
+    }) %>;
+    window.mapTilerApiKey = <%- JSON.stringify(mapTilerApiKey) %>;
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const imageCarousel = document.getElementById('imageCarousel');
+        if (imageCarousel && window.bootstrap && window.bootstrap.Carousel) {
+            window.bootstrap.Carousel.getOrCreateInstance(imageCarousel, {
+                interval: 4500,
+                pause: 'hover',
+                ride: 'carousel',
+                touch: true,
+                wrap: true
+            });
+        }
+    });
+</script>
+<script src="/javascripts/showPageMap.js"></script>

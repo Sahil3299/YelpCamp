@@ -1,16 +1,17 @@
 <% layout('layouts/boilerplate')%>
 
 <!-- Hero Section -->
-<section class="hero" style="background-image: url('https://codegift.ee/wp-content/uploads/2022/01/yelpcamp_background.jpg')">
+<section class="hero home-hero" style="background-image: url('https://images.unsplash.com/photo-1504851149312-7a075b496cc7?auto=format&fit=crop&w=1800&q=80')">
     <div class="hero-content">
-        <h1 class="hero-title">Welcome to YelpCamp</h1>
-        <p class="hero-subtitle">Discover and share the best campgrounds around the world</p>
+        <p class="hero-kicker">A community for outdoor people</p>
+        <h1 class="hero-title">Find your <em>next wild</em> place.</h1>
+        <p class="hero-subtitle">Discover and share extraordinary campgrounds across India, from Himalayan ridges to quiet beaches and desert skies.</p>
         <div class="hero-buttons">
-            <a href="/campgrounds" class="btn btn-light btn-lg">
-                <i class="fas fa-search me-2"></i>Explore Campgrounds
+            <a href="/campgrounds" class="btn btn-primary btn-lg">
+                Start Your Adventure <i class="fas fa-arrow-right ms-2"></i>
             </a>
-            <a href="/campgrounds/new" class="btn btn-outline-primary btn-lg">
-                <i class="fas fa-plus me-2"></i>Add Campground
+            <a href="/register" class="btn btn-outline-light btn-lg">
+                Explore Campgrounds
             </a>
         </div>
     </div>
@@ -21,24 +22,24 @@
     <div class="container-lg">
         <h2 class="section-title">Featured Campgrounds</h2>
         <div class="section-divider"></div>
-        <p class="section-subtitle">Explore handpicked campgrounds from our community</p>
+        <p class="section-subtitle">Explore handpicked Indian campgrounds from our community</p>
         
         <div class="grid-cards mt-5">
             <div class="campground-card stagger-item hover-lift">
                 <div class="campground-card-image image-hover-overlay">
-                    <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=500" alt="Mountain Retreat" class="w-100 h-100" style="object-fit: cover;">
+                    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=500" alt="Rishikesh Riverside Camp" class="w-100 h-100" style="object-fit: cover;">
                     <span class="campground-card-badge">Popular</span>
                 </div>
                 <div class="campground-card-body">
-                    <h5 class="campground-card-title">Mountain Peak Lodge</h5>
-                    <p class="campground-card-description">Experience stunning mountain views and premium amenities at our flagship campground.</p>
+                    <h5 class="campground-card-title">Rishikesh Riverside Camp</h5>
+                    <p class="campground-card-description">Rafting, riverside tents, bonfire evenings, and Himalayan foothill views near the Ganga.</p>
                     <div class="campground-card-location">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span>Colorado, USA</span>
+                        <span>Uttarakhand, India</span>
                     </div>
                     <div class="campground-card-footer">
                         <div>
-                            <div class="campground-card-price">$89<small>/night</small></div>
+                            <div class="campground-card-price">Rs. 2200<small>/night</small></div>
                         </div>
                         <a href="/campgrounds" class="btn btn-primary btn-sm campground-card-btn">View</a>
                     </div>
@@ -47,19 +48,19 @@
 
             <div class="campground-card stagger-item hover-lift">
                 <div class="campground-card-image image-hover-overlay">
-                    <img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=500" alt="Forest Camp" class="w-100 h-100" style="object-fit: cover;">
+                    <img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=500" alt="Tirthan Valley Pine Camp" class="w-100 h-100" style="object-fit: cover;">
                     <span class="campground-card-badge">New</span>
                 </div>
                 <div class="campground-card-body">
-                    <h5 class="campground-card-title">Forest Haven Camp</h5>
-                    <p class="campground-card-description">Immerse yourself in nature with our newly opened camping site nestled in ancient forests.</p>
+                    <h5 class="campground-card-title">Tirthan Valley Pine Camp</h5>
+                    <p class="campground-card-description">A quiet pine forest base for river walks, trout fishing, birding, and village trails.</p>
                     <div class="campground-card-location">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span>Oregon, USA</span>
+                        <span>Himachal Pradesh, India</span>
                     </div>
                     <div class="campground-card-footer">
                         <div>
-                            <div class="campground-card-price">$65<small>/night</small></div>
+                            <div class="campground-card-price">Rs. 2800<small>/night</small></div>
                         </div>
                         <a href="/campgrounds" class="btn btn-primary btn-sm campground-card-btn">View</a>
                     </div>
@@ -68,19 +69,19 @@
 
             <div class="campground-card stagger-item hover-lift">
                 <div class="campground-card-image image-hover-overlay">
-                    <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=500" alt="Beach Camp" class="w-100 h-100" style="object-fit: cover;">
+                    <img src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=500" alt="Jaisalmer Dune Safari Camp" class="w-100 h-100" style="object-fit: cover;">
                     <span class="campground-card-badge">Best Rated</span>
                 </div>
                 <div class="campground-card-body">
-                    <h5 class="campground-card-title">Coastal Paradise</h5>
-                    <p class="campground-card-description">Wake up to ocean breezes and pristine beaches at our exclusive coastal campground.</p>
+                    <h5 class="campground-card-title">Jaisalmer Dune Safari Camp</h5>
+                    <p class="campground-card-description">Canvas tents, camel trails, folk music nights, and sunset views over the Thar.</p>
                     <div class="campground-card-location">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span>California, USA</span>
+                        <span>Rajasthan, India</span>
                     </div>
                     <div class="campground-card-footer">
                         <div>
-                            <div class="campground-card-price">$125<small>/night</small></div>
+                            <div class="campground-card-price">Rs. 4200<small>/night</small></div>
                         </div>
                         <a href="/campgrounds" class="btn btn-primary btn-sm campground-card-btn">View</a>
                     </div>
@@ -89,19 +90,19 @@
 
             <div class="campground-card stagger-item hover-lift">
                 <div class="campground-card-image image-hover-overlay">
-                    <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=500" alt="Desert Camp" class="w-100 h-100" style="object-fit: cover;">
+                    <img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=500" alt="Coorg Coffee Estate Camp" class="w-100 h-100" style="object-fit: cover;">
                     <span class="campground-card-badge">Adventure</span>
                 </div>
                 <div class="campground-card-body">
-                    <h5 class="campground-card-title">Desert Dreams</h5>
-                    <p class="campground-card-description">Explore vast desert landscapes and stunning starry nights in this unique camping experience.</p>
+                    <h5 class="campground-card-title">Coorg Coffee Estate Camp</h5>
+                    <p class="campground-card-description">Misty plantation trails, local meals, bonfire seating, and peaceful estate views.</p>
                     <div class="campground-card-location">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span>Arizona, USA</span>
+                        <span>Karnataka, India</span>
                     </div>
                     <div class="campground-card-footer">
                         <div>
-                            <div class="campground-card-price">$45<small>/night</small></div>
+                            <div class="campground-card-price">Rs. 3200<small>/night</small></div>
                         </div>
                         <a href="/campgrounds" class="btn btn-primary btn-sm campground-card-btn">View</a>
                     </div>
@@ -110,19 +111,19 @@
 
             <div class="campground-card stagger-item hover-lift">
                 <div class="campground-card-image image-hover-overlay">
-                    <img src="https://images.unsplash.com/photo-1492648272180-81342ee5ff30?w=500" alt="Lake Camp" class="w-100 h-100" style="object-fit: cover;">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500" alt="Andaman Beachfront Camp" class="w-100 h-100" style="object-fit: cover;">
                     <span class="campground-card-badge">Relaxing</span>
                 </div>
                 <div class="campground-card-body">
-                    <h5 class="campground-card-title">Lakeside Serenity</h5>
-                    <p class="campground-card-description">Perfect for families, our lakeside resort offers water sports and peaceful nature walks.</p>
+                    <h5 class="campground-card-title">Andaman Beachfront Camp</h5>
+                    <p class="campground-card-description">Island tents near turquoise water with snorkeling, kayaking, and slow beach evenings.</p>
                     <div class="campground-card-location">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span>Minnesota, USA</span>
+                        <span>Andaman and Nicobar Islands, India</span>
                     </div>
                     <div class="campground-card-footer">
                         <div>
-                            <div class="campground-card-price">$75<small>/night</small></div>
+                            <div class="campground-card-price">Rs. 5200<small>/night</small></div>
                         </div>
                         <a href="/campgrounds" class="btn btn-primary btn-sm campground-card-btn">View</a>
                     </div>
@@ -131,19 +132,19 @@
 
             <div class="campground-card stagger-item hover-lift">
                 <div class="campground-card-image image-hover-overlay">
-                    <img src="https://images.unsplash.com/photo-1489759337279-2a5a42b5f6eb?w=500" alt="Alpine Camp" class="w-100 h-100" style="object-fit: cover;">
+                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=500" alt="Ladakh Nubra Valley Camp" class="w-100 h-100" style="object-fit: cover;">
                     <span class="campground-card-badge">Scenic</span>
                 </div>
                 <div class="campground-card-body">
-                    <h5 class="campground-card-title">Alpine Adventure</h5>
-                    <p class="campground-card-description">Challenge yourself with high-altitude hiking and breathtaking alpine meadows.</p>
+                    <h5 class="campground-card-title">Ladakh Nubra Valley Camp</h5>
+                    <p class="campground-card-description">Cold desert camping with dunes, monasteries, poplar groves, and stargazing nights.</p>
                     <div class="campground-card-location">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span>Montana, USA</span>
+                        <span>Ladakh, India</span>
                     </div>
                     <div class="campground-card-footer">
                         <div>
-                            <div class="campground-card-price">$85<small>/night</small></div>
+                            <div class="campground-card-price">Rs. 4800<small>/night</small></div>
                         </div>
                         <a href="/campgrounds" class="btn btn-primary btn-sm campground-card-btn">View</a>
                     </div>
@@ -173,7 +174,7 @@
                         <i class="fas fa-map-location-dot fa-3x text-primary"></i>
                     </div>
                     <h5 class="card-title">Discover Locations</h5>
-                    <p class="card-text">Find campgrounds all around the world with detailed information and user reviews.</p>
+                    <p class="card-text">Find campgrounds across India with detailed information and user reviews.</p>
                 </div>
             </div>
 
@@ -279,7 +280,7 @@
 <section class="section bg-primary text-white">
     <div class="container-lg text-center">
         <h2 class="section-title text-white mb-3">Ready for Your Next Adventure?</h2>
-        <p class="section-subtitle text-white mb-4">Join thousands of campers exploring the world's best campgrounds</p>
+        <p class="section-subtitle text-white mb-4">Join campers exploring India's most memorable outdoor stays</p>
         <div class="d-flex gap-3 justify-content-center flex-wrap">
             <a href="/campgrounds" class="btn btn-light btn-lg">
                 <i class="fas fa-search me-2"></i>Browse Campgrounds

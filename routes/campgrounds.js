@@ -11,6 +11,7 @@ router.route('/')
     .post(isLoggedIn, validateCampground, catchAsync(campgrounds.createCampground))
 
 router.get('/new', isLoggedIn, campgrounds.renderNewForm)
+router.get('/geocode', isLoggedIn, catchAsync(campgrounds.geocode))
 
 router.route('/:id')
     .get(catchAsync(campgrounds.showCampground))

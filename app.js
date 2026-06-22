@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+require('./utils/loadEnv')();
 const mongoose = require('mongoose');
 const ejsMate = require('ejs-mate');
 const session = require('express-session');
@@ -15,11 +16,14 @@ const userRoutes = require('./routes/users');
 const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
 
-mongoose.connect('mongodb://localhost:27017/yelp-camp', {
+const dbUrl = process.env.MONGO_URI || process.env.DATABASE_URL || 'mongodb://localhost:27017/yelp-camp';
+
+mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
-    useFindAndModify: false
+    useFindAndModify: false,
+    authSource: 'admin'
 });
 
 const db = mongoose.connection;
@@ -64,6 +68,7 @@ app.use((req, res, next) => {
     res.locals.currentUser = req.user;
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
+    res.locals.mapTilerApiKey = process.env.MAPTILER_BROWSER_KEY || process.env.MAPTILER_API_KEY || '';
     next();
 })
 
@@ -85,11 +90,10 @@ app.all('*', (req, res, next) => {
 app.use((err, req, res, next) => {
     const { statusCode = 500 } = err;
     if (!err.message) err.message = 'Oh No, Something Went Wrong!'
-    res.status(statusCode).render('error', { err })
+    res.status(statusCode).render('error', { err, showStack: process.env.NODE_ENV !== 'production' })
 })
 
-app.listen(3001, () => {
-    console.log('Serving on port 3001')
+const port = process.env.PORT || 3001;
+app.listen(port, () => {
+    console.log(`Serving on port ${port}`)
 })
-
-

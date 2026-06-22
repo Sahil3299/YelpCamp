@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg sticky-top navbar-light" aria-label="Main navigation">
     <div class="container-lg">
-        <a class="navbar-brand link-hover-underline" href="/">
-            <i class="fas fa-campground me-2"></i>YelpCamp
+        <a class="navbar-brand" href="/">
+            <img src="/images/logo.png" alt="YelpCamp Logo" class="logo-img navbar-logo">
         </a>
         <button class="navbar-toggler transition-base" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
@@ -11,52 +11,39 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <ul class="navbar-nav ms-auto align-items-lg-center">
                 <li class="nav-item">
-                    <a class="nav-link link-hover-underline" href="/">
-                        <i class="fas fa-home me-1"></i>Home
+                    <a class="nav-link" href="/campgrounds">
+                        Campgrounds
                     </a>
                 </li>
+                <% if(currentUser) { %>
                 <li class="nav-item">
-                    <a class="nav-link link-hover-underline" href="/campgrounds">
-                        <i class="fas fa-map-marked-alt me-1"></i>Campgrounds
+                    <a class="nav-link" href="/campgrounds/new">
+                        Add Campground
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link link-hover-underline" href="/campgrounds/new">
-                        <i class="fas fa-plus-circle me-1"></i>Add Campground
-                    </a>
-                </li>
+                <% } %>
                 <li class="nav-item navbar-auth-item ms-lg-3">
                     <% if(!currentUser) {%>
                     <div class="navbar-auth-group">
-                        <a class="btn btn-primary btn-sm" href="/login">
-                            <i class="fas fa-sign-in-alt me-1"></i>Login
+                        <a class="nav-link nav-login-link" href="/login">
+                            Login
                         </a>
-                        <a class="btn btn-outline-primary btn-sm" href="/register">
-                            <i class="fas fa-user-plus me-1"></i>Register
+                        <a class="btn btn-primary btn-sm" href="/register">
+                            Get Started
                         </a>
                     </div>
                     <% } else {%>
-                    <div class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="d-flex align-items-center gap-2">
+                        <a class="nav-link" href="#">
                             <i class="fas fa-user-circle me-1"></i><%= currentUser.username %>
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                            <li>
-                                <form action="/logout" method="POST" style="display: inline;">
-                                    <button type="submit" class="dropdown-item text-danger">
-                                        <i class="fas fa-sign-out-alt me-2"></i>Logout
-                                    </button>
-                                </form>
-                            </li>
-                        </ul>
+                        <form action="/logout" method="POST" class="mb-0">
+                            <button type="submit" class="btn btn-outline-danger btn-sm">
+                                Logout
+                            </button>
+                        </form>
                     </div>
                     <% } %>
-                </li>
-                <li class="nav-item navbar-theme-item ms-lg-3">
-                    <button id="theme-toggle" class="btn btn-sm btn-outline-secondary" type="button" title="Toggle theme" aria-label="Toggle color theme">
-                        <i class="fas fa-moon"></i>
-                    </button>
                 </li>
             </ul>
         </div>

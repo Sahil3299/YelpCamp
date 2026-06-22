@@ -160,7 +160,7 @@ yelpcamp/
 ### Frontend
 - **Templating**: EJS (Embedded JavaScript)
 - **Styling**: Bootstrap CSS Framework
-- **Maps**: Mapbox integration (for location display)
+- **Maps**: Leaflet with OpenStreetMap tiles (free, no token needed)
 
 ### Cloud Services
 - **Image Storage**: Cloudinary
@@ -214,9 +214,6 @@ env
    CLOUDINARY_CLOUD_NAME=your-cloud-name
    CLOUDINARY_KEY=your-api-key
    CLOUDINARY_SECRET=your-api-secret
-   
-   # Mapbox (for maps)
-   MAPBOX_TOKEN=your-mapbox-token
    
 ```
 
@@ -375,7 +372,7 @@ This project is licensed under the ISC License.
 
 - Built following the Colt Steele Web Developer Bootcamp curriculum
 - Inspired by [Yelp](https://www.yelp.com/)
-- Map functionality powered by [Mapbox](https://www.mapbox.com/)
+- Map functionality powered by [Leaflet](https://leafletjs.com/) and [OpenStreetMap](https://www.openstreetmap.org/)
 - Image hosting by [Cloudinary](https://cloudinary.com/)
 - Icons from [Bootstrap Icons](https://icons.getbootstrap.com/)
 

@@ -32,10 +32,21 @@
                     <div class="form-row">
                         <div>
                             <label class="form-label" for="location">
-                                <i class="fas fa-map-pin text-primary me-1"></i>Location/City*
+                                <i class="fas fa-map-pin text-primary me-1"></i>Location*
                             </label>
-                            <input class="form-control" type="text" id="location" name="campground[location]" 
-                                placeholder="e.g., Denver" required>
+                            <div class="location-search" data-location-search>
+                                <div class="location-search-input">
+                                    <input class="form-control" type="text" id="location" name="campground[location]"
+                                        placeholder="Search an address, city, park, or landmark" autocomplete="off" required>
+                                    <button class="location-current-btn" type="button" data-current-location title="Use current location" aria-label="Use current location">
+                                        <i class="fas fa-location-crosshairs"></i>
+                                    </button>
+                                </div>
+                                <div class="location-suggestions" data-location-suggestions></div>
+                                <small class="text-muted" data-location-status>
+                                    <i class="fas fa-info-circle me-1"></i>Choose a precise place so campers can find it on the map.
+                                </small>
+                            </div>
                             <div class="valid-feedback">
                                 <i class="fas fa-check me-1"></i>Looks good!
                             </div>
@@ -46,7 +57,7 @@
                                 <i class="fas fa-globe text-primary me-1"></i>Country*
                             </label>
                             <input class="form-control" type="text" id="country" name="campground[country]" 
-                                placeholder="e.g., United States" required>
+                                placeholder="e.g., India" required>
                             <div class="valid-feedback">
                                 <i class="fas fa-check me-1"></i>Looks good!
                             </div>
@@ -133,3 +144,5 @@
         </div>
     </div>
 </div>
+
+<script src="/javascripts/locationAutocomplete.js"></script>

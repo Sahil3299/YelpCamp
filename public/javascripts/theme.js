@@ -27,18 +27,7 @@ class ThemeManager {
      * Load saved theme from localStorage or system preference
      */
     loadSavedTheme() {
-        const savedTheme = localStorage.getItem(this.STORAGE_KEY);
-        
-        if (savedTheme) {
-            this.setTheme(savedTheme);
-        } else {
-            // Check system preference
-            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                this.setTheme(this.DARK_THEME);
-            } else {
-                this.setTheme(this.LIGHT_THEME);
-            }
-        }
+        this.setTheme(this.LIGHT_THEME);
     }
 
     /**
@@ -192,7 +181,7 @@ function updateChartsTheme(theme) {
  */
 function updateMapTheme(theme) {
     // This would be implemented if using map library
-    // Example: Update Leaflet, Mapbox colors, etc.
+    // Example: Update MapTiler map style, markers, etc.
 }
 
 // Export for use in other modules
