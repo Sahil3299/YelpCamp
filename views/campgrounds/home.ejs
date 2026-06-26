@@ -1,18 +1,59 @@
 <% layout('layouts/boilerplate')%>
+<link rel="stylesheet" href="/stylesheets/home.css">
 
 <!-- Hero Section -->
 <section class="hero home-hero" style="background-image: url('https://images.unsplash.com/photo-1504851149312-7a075b496cc7?auto=format&fit=crop&w=1800&q=80')">
-    <div class="hero-content">
-        <p class="hero-kicker">A community for outdoor people</p>
-        <h1 class="hero-title">Find your <em>next wild</em> place.</h1>
-        <p class="hero-subtitle">Discover and share extraordinary campgrounds across India, from Himalayan ridges to quiet beaches and desert skies.</p>
-        <div class="hero-buttons">
-            <a href="/campgrounds" class="btn btn-primary btn-lg">
-                Start Your Adventure <i class="fas fa-arrow-right ms-2"></i>
+    <div class="home-hero-inner">
+        <div class="home-brand">
+            <span class="home-brand-icon" aria-hidden="true">
+                <i class="bi bi-signpost-2-fill"></i>
+            </span>
+            <div>
+                <h2 class="home-brand-name">YelpCamp</h2>
+                <p class="home-brand-tagline">Find Your Next Adventure</p>
+            </div>
+        </div>
+
+        <div class="home-hero-content">
+            <h1 class="home-headline">
+                <span class="home-headline-line">Find. Explore.</span>
+                <span class="home-headline-line home-headline-accent">Camp. Review.</span>
+            </h1>
+            <p class="home-subtitle">Discover and review amazing campgrounds around the world.</p>
+            <a href="/campgrounds" class="btn btn-success btn-lg home-cta">
+                Explore Campgrounds <i class="bi bi-arrow-right ms-2"></i>
             </a>
-            <a href="/register" class="btn btn-outline-light btn-lg">
-                Explore Campgrounds
-            </a>
+        </div>
+
+        <div class="home-features" role="list">
+            <div class="home-feature" role="listitem">
+                <span class="home-feature-icon" aria-hidden="true"><i class="bi bi-search"></i></span>
+                <div>
+                    <h3 class="home-feature-title">Browse Campgrounds</h3>
+                    <p class="home-feature-text">Explore hundreds of campgrounds with details, photos, and locations.</p>
+                </div>
+            </div>
+            <div class="home-feature" role="listitem">
+                <span class="home-feature-icon" aria-hidden="true"><i class="bi bi-pencil-fill"></i></span>
+                <div>
+                    <h3 class="home-feature-title">Add Your Campground</h3>
+                    <p class="home-feature-text">Share your favorite camping spots with the community.</p>
+                </div>
+            </div>
+            <div class="home-feature" role="listitem">
+                <span class="home-feature-icon" aria-hidden="true"><i class="bi bi-star"></i></span>
+                <div>
+                    <h3 class="home-feature-title">Write Reviews</h3>
+                    <p class="home-feature-text">Rate and review campgrounds to help fellow campers.</p>
+                </div>
+            </div>
+            <div class="home-feature" role="listitem">
+                <span class="home-feature-icon" aria-hidden="true"><i class="bi bi-geo-alt-fill"></i></span>
+                <div>
+                    <h3 class="home-feature-title">Interactive Maps</h3>
+                    <p class="home-feature-text">View campgrounds on interactive maps and find spots near you.</p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -22,7 +63,7 @@
     <div class="container-lg">
         <h2 class="section-title">Featured Campgrounds</h2>
         <div class="section-divider"></div>
-        <p class="section-subtitle">Explore handpicked Indian campgrounds from our community</p>
+        <p class="section-subtitle">Explore handpicked campgrounds from our community</p>
         
         <div class="grid-cards mt-5">
             <div class="campground-card stagger-item hover-lift">
@@ -34,7 +75,7 @@
                     <h5 class="campground-card-title">Rishikesh Riverside Camp</h5>
                     <p class="campground-card-description">Rafting, riverside tents, bonfire evenings, and Himalayan foothill views near the Ganga.</p>
                     <div class="campground-card-location">
-                        <i class="fas fa-map-marker-alt"></i>
+                        <i class="bi bi-geo-alt-fill"></i>
                         <span>Uttarakhand, India</span>
                     </div>
                     <div class="campground-card-footer">
@@ -55,7 +96,7 @@
                     <h5 class="campground-card-title">Tirthan Valley Pine Camp</h5>
                     <p class="campground-card-description">A quiet pine forest base for river walks, trout fishing, birding, and village trails.</p>
                     <div class="campground-card-location">
-                        <i class="fas fa-map-marker-alt"></i>
+                        <i class="bi bi-geo-alt-fill"></i>
                         <span>Himachal Pradesh, India</span>
                     </div>
                     <div class="campground-card-footer">
@@ -76,7 +117,7 @@
                     <h5 class="campground-card-title">Jaisalmer Dune Safari Camp</h5>
                     <p class="campground-card-description">Canvas tents, camel trails, folk music nights, and sunset views over the Thar.</p>
                     <div class="campground-card-location">
-                        <i class="fas fa-map-marker-alt"></i>
+                        <i class="bi bi-geo-alt-fill"></i>
                         <span>Rajasthan, India</span>
                     </div>
                     <div class="campground-card-footer">
@@ -97,7 +138,7 @@
                     <h5 class="campground-card-title">Coorg Coffee Estate Camp</h5>
                     <p class="campground-card-description">Misty plantation trails, local meals, bonfire seating, and peaceful estate views.</p>
                     <div class="campground-card-location">
-                        <i class="fas fa-map-marker-alt"></i>
+                        <i class="bi bi-geo-alt-fill"></i>
                         <span>Karnataka, India</span>
                     </div>
                     <div class="campground-card-footer">
@@ -108,170 +149,12 @@
                     </div>
                 </div>
             </div>
-
-            <div class="campground-card stagger-item hover-lift">
-                <div class="campground-card-image image-hover-overlay">
-                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500" alt="Andaman Beachfront Camp" class="w-100 h-100" style="object-fit: cover;">
-                    <span class="campground-card-badge">Relaxing</span>
-                </div>
-                <div class="campground-card-body">
-                    <h5 class="campground-card-title">Andaman Beachfront Camp</h5>
-                    <p class="campground-card-description">Island tents near turquoise water with snorkeling, kayaking, and slow beach evenings.</p>
-                    <div class="campground-card-location">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Andaman and Nicobar Islands, India</span>
-                    </div>
-                    <div class="campground-card-footer">
-                        <div>
-                            <div class="campground-card-price">Rs. 5200<small>/night</small></div>
-                        </div>
-                        <a href="/campgrounds" class="btn btn-primary btn-sm campground-card-btn">View</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="campground-card stagger-item hover-lift">
-                <div class="campground-card-image image-hover-overlay">
-                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=500" alt="Ladakh Nubra Valley Camp" class="w-100 h-100" style="object-fit: cover;">
-                    <span class="campground-card-badge">Scenic</span>
-                </div>
-                <div class="campground-card-body">
-                    <h5 class="campground-card-title">Ladakh Nubra Valley Camp</h5>
-                    <p class="campground-card-description">Cold desert camping with dunes, monasteries, poplar groves, and stargazing nights.</p>
-                    <div class="campground-card-location">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Ladakh, India</span>
-                    </div>
-                    <div class="campground-card-footer">
-                        <div>
-                            <div class="campground-card-price">Rs. 4800<small>/night</small></div>
-                        </div>
-                        <a href="/campgrounds" class="btn btn-primary btn-sm campground-card-btn">View</a>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <div class="text-center mt-5">
             <a href="/campgrounds" class="btn btn-primary btn-lg">
-                <i class="fas fa-arrow-right me-2"></i>View All Campgrounds
+                <i class="bi bi-arrow-right me-2"></i>View All Campgrounds
             </a>
-        </div>
-    </div>
-</section>
-
-<!-- Features Section -->
-<section class="section">
-    <div class="container-lg">
-        <h2 class="section-title">Why Choose YelpCamp?</h2>
-        <div class="section-divider"></div>
-        <p class="section-subtitle">Everything you need for your camping adventure</p>
-
-        <div class="grid-cards mt-5">
-            <div class="card stagger-item hover-shadow">
-                <div class="card-body text-center py-4">
-                    <div class="mb-3">
-                        <i class="fas fa-map-location-dot fa-3x text-primary"></i>
-                    </div>
-                    <h5 class="card-title">Discover Locations</h5>
-                    <p class="card-text">Find campgrounds across India with detailed information and user reviews.</p>
-                </div>
-            </div>
-
-            <div class="card stagger-item hover-shadow">
-                <div class="card-body text-center py-4">
-                    <div class="mb-3">
-                        <i class="fas fa-star fa-3x text-warning"></i>
-                    </div>
-                    <h5 class="card-title">Read Reviews</h5>
-                    <p class="card-text">Get honest reviews from real campers to help you make the best choice.</p>
-                </div>
-            </div>
-
-            <div class="card stagger-item hover-shadow">
-                <div class="card-body text-center py-4">
-                    <div class="mb-3">
-                        <i class="fas fa-pen-fancy fa-3x text-success"></i>
-                    </div>
-                    <h5 class="card-title">Share Experience</h5>
-                    <p class="card-text">Submit your favorite campgrounds and help other travelers find their perfect spot.</p>
-                </div>
-            </div>
-
-            <div class="card stagger-item hover-shadow">
-                <div class="card-body text-center py-4">
-                    <div class="mb-3">
-                        <i class="fas fa-shield-halved fa-3x text-info"></i>
-                    </div>
-                    <h5 class="card-title">Trusted Community</h5>
-                    <p class="card-text">Join thousands of outdoor enthusiasts sharing their camping experiences.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Testimonials Section -->
-<section class="section bg-light">
-    <div class="container-lg">
-        <h2 class="section-title">What Campers Say</h2>
-        <div class="section-divider"></div>
-        <p class="section-subtitle">Real reviews from our community</p>
-
-        <div class="grid-cards mt-5">
-            <div class="testimonial-card stagger-item">
-                <div class="d-flex gap-2 mb-3">
-                    <i class="fas fa-star text-warning"></i>
-                    <i class="fas fa-star text-warning"></i>
-                    <i class="fas fa-star text-warning"></i>
-                    <i class="fas fa-star text-warning"></i>
-                    <i class="fas fa-star text-warning"></i>
-                </div>
-                <p class="testimonial-text">"YelpCamp helped me find the most amazing campgrounds! The reviews are detailed and the site is so easy to use."</p>
-                <div class="testimonial-author">
-                    <div class="testimonial-avatar">JD</div>
-                    <div>
-                        <p class="testimonial-author-name">John Davis</p>
-                        <p class="testimonial-author-role">Outdoor Enthusiast</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testimonial-card stagger-item">
-                <div class="d-flex gap-2 mb-3">
-                    <i class="fas fa-star text-warning"></i>
-                    <i class="fas fa-star text-warning"></i>
-                    <i class="fas fa-star text-warning"></i>
-                    <i class="fas fa-star text-warning"></i>
-                    <i class="fas fa-star text-warning"></i>
-                </div>
-                <p class="testimonial-text">"I've discovered 15+ new campgrounds through YelpCamp. The community feedback is invaluable for planning trips."</p>
-                <div class="testimonial-author">
-                    <div class="testimonial-avatar" style="background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);">SM</div>
-                    <div>
-                        <p class="testimonial-author-name">Sarah Mitchell</p>
-                        <p class="testimonial-author-role">Travel Blogger</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testimonial-card stagger-item">
-                <div class="d-flex gap-2 mb-3">
-                    <i class="fas fa-star text-warning"></i>
-                    <i class="fas fa-star text-warning"></i>
-                    <i class="fas fa-star text-warning"></i>
-                    <i class="fas fa-star text-warning"></i>
-                    <i class="fas fa-star text-warning"></i>
-                </div>
-                <p class="testimonial-text">"The best platform for camping recommendations. Clean design, accurate information, and helpful community!"</p>
-                <div class="testimonial-author">
-                    <div class="testimonial-avatar" style="background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);">MC</div>
-                    <div>
-                        <p class="testimonial-author-name">Mike Chen</p>
-                        <p class="testimonial-author-role">Nature Photographer</p>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </section>
@@ -280,13 +163,13 @@
 <section class="section bg-primary text-white">
     <div class="container-lg text-center">
         <h2 class="section-title text-white mb-3">Ready for Your Next Adventure?</h2>
-        <p class="section-subtitle text-white mb-4">Join campers exploring India's most memorable outdoor stays</p>
+        <p class="section-subtitle text-white mb-4">Join campers exploring the most memorable outdoor stays</p>
         <div class="d-flex gap-3 justify-content-center flex-wrap">
             <a href="/campgrounds" class="btn btn-light btn-lg">
-                <i class="fas fa-search me-2"></i>Browse Campgrounds
+                <i class="bi bi-search me-2"></i>Browse Campgrounds
             </a>
             <a href="/register" class="btn btn-outline-light btn-lg">
-                <i class="fas fa-user-plus me-2"></i>Join Today
+                <i class="bi bi-person-plus me-2"></i>Join Today
             </a>
         </div>
     </div>

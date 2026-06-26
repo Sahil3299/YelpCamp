@@ -412,6 +412,11 @@ main {
     pointer-events: none;
 }
 
+.home-hero.hero::after {
+    display: none;
+    content: none;
+}
+
 .hero-content {
     position: relative;
     z-index: 2;
@@ -857,9 +862,35 @@ main {
 .detail-info-title {
     display: flex;
     justify-content: space-between;
-    align-items: start;
+    align-items: flex-start;
     margin-bottom: 1.5rem;
     gap: 1rem;
+}
+
+.detail-price {
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.detail-price-meta {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    line-height: 1.2;
+    margin-bottom: 0.15rem;
+}
+
+.detail-price-amount {
+    display: block;
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1;
+}
+
+.detail-price-unit {
+    font-weight: 500;
 }
 
 .detail-info-text {
@@ -880,15 +911,21 @@ main {
 }
 
 .detail-meta-icon {
-    width: 40px;
-    height: 40px;
-    background: rgba(37, 99, 235, 0.1);
+    width: 44px;
+    height: 44px;
+    background: rgba(41, 79, 37, 0.1);
+    border: 1px solid rgba(41, 79, 37, 0.12);
     border-radius: var(--radius-lg);
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--color-primary);
     flex-shrink: 0;
+}
+
+.detail-meta-icon i {
+    font-size: 1.15rem;
+    line-height: 1;
 }
 
 .detail-meta-text h6 {
@@ -1192,20 +1229,27 @@ main {
 }
 
 .auth-title-icon {
-    width: 56px;
-    height: 56px;
-    border-radius: var(--radius-lg);
-    background: rgba(37, 99, 235, 0.1);
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(41, 79, 37, 0.08);
+    border: 2px solid rgba(41, 79, 37, 0.14);
     color: var(--color-primary);
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.35rem;
-    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    margin-bottom: 1.25rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.auth-title-icon i {
+    line-height: 1;
 }
 
 .auth-title-icon-success {
-    background: rgba(16, 185, 129, 0.12);
+    background: rgba(16, 185, 129, 0.1);
+    border-color: rgba(16, 185, 129, 0.2);
     color: var(--color-success);
 }
 
@@ -1224,6 +1268,40 @@ main {
 .auth-note {
     max-width: 520px;
     margin: 1.25rem auto 0;
+}
+
+.auth-input-group .input-group-text {
+    background: rgba(41, 79, 37, 0.06);
+    border-color: var(--color-border);
+    color: var(--color-primary);
+    min-width: 46px;
+    justify-content: center;
+}
+
+.auth-input-group .input-group-text i {
+    font-size: 1.05rem;
+    line-height: 1;
+}
+
+.auth-input-group .form-control:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 0.2rem rgba(41, 79, 37, 0.12);
+}
+
+.auth-input-group.password-toggle {
+    position: relative;
+}
+
+.auth-input-group.password-toggle .form-control {
+    padding-right: 3rem;
+}
+
+.auth-input-group.password-toggle .password-toggle-btn {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 4;
 }
 
 /* ===== TESTIMONIALS ===== */

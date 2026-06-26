@@ -405,6 +405,10 @@
 /* Password toggle */
 .password-toggle {
     position: relative;
+}
+
+.password-toggle.input-group,
+.auth-input-group.password-toggle {
     display: flex;
 }
 
@@ -767,14 +771,21 @@
 }
 
 .brand-mark {
-    width: 36px;
-    height: 36px;
-    border-radius: var(--radius-full);
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
     background: var(--color-primary);
     color: #fff;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.15rem;
+    box-shadow: 0 4px 12px rgba(41, 79, 37, 0.22);
+}
+
+.brand-mark i {
+    line-height: 1;
 }
 
 .navbar-logo {

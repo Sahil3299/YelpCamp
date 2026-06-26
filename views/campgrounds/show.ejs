@@ -51,25 +51,27 @@
         </div>
 
         <!-- Campground Details -->
+        <% const reviewCount = campground.reviews.length; %>
+        <% const reviewLabel = reviewCount === 1 ? 'review' : 'reviews'; %>
+        <% const avgRating = reviewCount > 0 ? (campground.reviews.reduce((sum, r) => sum + r.rating, 0) / reviewCount).toFixed(1) : null; %>
         <div class="detail-info-box">
             <div class="detail-info-title">
                 <div>
                     <h2 class="mb-1"><%= campground.title%></h2>
                     <div class="d-flex gap-2 mb-2 flex-wrap">
                         <span class="badge bg-success">
-                            <i class="fas fa-check me-1"></i>Verified
+                            <i class="bi bi-patch-check-fill me-1"></i>Verified
                         </span>
-                        <% if(campground.reviews.length > 0) { %>
+                        <% if(reviewCount > 0) { %>
                         <span class="badge bg-warning text-dark">
-                            <i class="fas fa-star me-1"></i><%= (campground.reviews.reduce((sum, r) => sum + r.rating, 0) / campground.reviews.length).toFixed(1) %> (<%= campground.reviews.length %> reviews)
+                            <i class="bi bi-star-fill me-1"></i><%= avgRating %> (<%= reviewCount %> <%= reviewLabel %>)
                         </span>
                         <% } %>
                     </div>
                 </div>
-                <div class="text-end">
-                    <div class="campground-card-price">
-                        Rs. <%= campground.price %><small>/night</small>
-                    </div>
+                <div class="detail-price">
+                    <span class="detail-price-meta">Rs. <span class="detail-price-unit">/night</span></span>
+                    <span class="detail-price-amount"><%= campground.price %></span>
                 </div>
             </div>
 
@@ -78,8 +80,8 @@
             <!-- Meta Information -->
             <div class="detail-meta">
                 <div class="detail-meta-item">
-                    <div class="detail-meta-icon">
-                        <i class="fas fa-map-marker-alt"></i>
+                    <div class="detail-meta-icon" aria-hidden="true">
+                        <i class="bi bi-geo-alt-fill"></i>
                     </div>
                     <div class="detail-meta-text">
                         <h6>Location</h6>
@@ -88,8 +90,8 @@
                 </div>
 
                 <div class="detail-meta-item">
-                    <div class="detail-meta-icon">
-                        <i class="fas fa-globe"></i>
+                    <div class="detail-meta-icon" aria-hidden="true">
+                        <i class="bi bi-globe2"></i>
                     </div>
                     <div class="detail-meta-text">
                         <h6>Country</h6>
@@ -98,8 +100,8 @@
                 </div>
 
                 <div class="detail-meta-item">
-                    <div class="detail-meta-icon">
-                        <i class="fas fa-user"></i>
+                    <div class="detail-meta-icon" aria-hidden="true">
+                        <i class="bi bi-person-circle"></i>
                     </div>
                     <div class="detail-meta-text">
                         <h6>Host</h6>
@@ -108,18 +110,18 @@
                 </div>
 
                 <div class="detail-meta-item">
-                    <div class="detail-meta-icon">
-                        <i class="fas fa-comment-dots"></i>
+                    <div class="detail-meta-icon" aria-hidden="true">
+                        <i class="bi bi-star"></i>
                     </div>
                     <div class="detail-meta-text">
                         <h6>Reviews</h6>
-                        <p><%= campground.reviews.length %> reviews</p>
+                        <p><%= reviewCount %> <%= reviewLabel %></p>
                     </div>
                 </div>
             </div>
 
             <div class="map-label mt-4">
-                <i class="fas fa-map me-2"></i>Location map
+                <i class="bi bi-map me-2"></i>Location map
             </div>
             <div class="map-shell detail-map-shell">
                 <div class="map-skeleton" aria-hidden="true"></div>

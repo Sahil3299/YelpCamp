@@ -5,55 +5,55 @@
         <div class="col-lg-5 auth-shell">
             <div class="form-section auth-card">
                 <div class="text-center auth-header">
-                    <span class="auth-title-icon">
-                        <i class="fas fa-sign-in-alt"></i>
+                    <span class="auth-title-icon" aria-hidden="true">
+                        <i class="bi bi-box-arrow-in-right"></i>
                     </span>
-                    <h1 class="mb-2">
-                        Welcome Back
-                    </h1>
+                    <h1 class="mb-2">Welcome Back</h1>
                     <p class="text-muted">Sign in to your YelpCamp account</p>
                 </div>
 
                 <form action="/login" method="POST" class="validated-form" novalidate>
                     <div class="form-group-vertical mb-4">
                         <label class="form-label" for="username">
-                            <i class="fas fa-user text-primary me-1"></i>Username<span class="required-mark">*</span>
+                            Username<span class="required-mark">*</span>
                         </label>
-                        <input class="form-control" type="text" id="username" name="username" 
-                            placeholder="Enter your username" required autocomplete="username">
+                        <div class="input-group auth-input-group">
+                            <span class="input-group-text"><i class="bi bi-person"></i></span>
+                            <input class="form-control" type="text" id="username" name="username" 
+                                placeholder="Enter your username" required autocomplete="username">
+                        </div>
                         <div class="valid-feedback">
-                            <i class="fas fa-check me-1"></i>Username looks good!
+                            <i class="bi bi-check-circle me-1"></i>Username looks good!
                         </div>
                     </div>
 
                     <div class="form-group-vertical mb-4">
                         <label class="form-label" for="password">
-                            <i class="fas fa-lock text-primary me-1"></i>Password<span class="required-mark">*</span>
+                            Password<span class="required-mark">*</span>
                         </label>
-                        <div class="password-toggle">
+                        <div class="input-group auth-input-group password-toggle">
+                            <span class="input-group-text"><i class="bi bi-lock"></i></span>
                             <input class="form-control" type="password" id="password" name="password" 
                                 placeholder="Enter your password" required autocomplete="current-password">
                             <button type="button" class="password-toggle-btn" onclick="togglePassword(event)">
-                                <i class="fas fa-eye"></i>
+                                <i class="bi bi-eye"></i>
                             </button>
                         </div>
                         <div class="valid-feedback">
-                            <i class="fas fa-check me-1"></i>Password looks good!
+                            <i class="bi bi-check-circle me-1"></i>Password looks good!
                         </div>
                     </div>
 
                     <div class="auth-options mb-4">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" id="rememberMe">
-                            <label class="form-check-label" for="rememberMe">
-                                Remember me
-                            </label>
+                            <label class="form-check-label" for="rememberMe">Remember me</label>
                         </div>
                         <a href="#" class="link-hover-underline small">Forgot password?</a>
                     </div>
 
                     <button class="btn btn-primary w-100 btn-lg mb-3" type="submit">
-                        <i class="fas fa-sign-in-alt me-2"></i>Sign In
+                        <i class="bi bi-box-arrow-in-right me-2"></i>Sign In
                     </button>
 
                     <div class="text-center">
@@ -67,7 +67,7 @@
 
             <div class="alert alert-info auth-note" role="alert">
                 <small>
-                    <i class="fas fa-info-circle me-2"></i>
+                    <i class="bi bi-info-circle me-2"></i>
                     Demo credentials: username: <strong>demo</strong>, password: <strong>demo123</strong>
                 </small>
             </div>
@@ -82,12 +82,12 @@ function togglePassword(e) {
     const icon = e.currentTarget.querySelector('i');
     if (input.type === 'password') {
         input.type = 'text';
-        icon.classList.remove('fa-eye');
-        icon.classList.add('fa-eye-slash');
+        icon.classList.remove('bi-eye');
+        icon.classList.add('bi-eye-slash');
     } else {
         input.type = 'password';
-        icon.classList.remove('fa-eye-slash');
-        icon.classList.add('fa-eye');
+        icon.classList.remove('bi-eye-slash');
+        icon.classList.add('bi-eye');
     }
 }
 </script>
