@@ -278,11 +278,11 @@
             <!-- Edit/Delete Actions for Owner -->
             <% if(currentUser && campground.author && campground.author.equals(currentUser._id)) { %>
             <div class="d-flex gap-2 mt-4 pt-3 border-top">
-                <a class="btn btn-info flex-grow-1" href="/campgrounds/<%=campground._id%>/edit">
+                <a class="btn btn-theme btn-theme-secondary flex-grow-1" href="/campgrounds/<%=campground._id%>/edit">
                     <i class="fas fa-edit me-2"></i>Edit Campground
                 </a>
                 <form action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST" class="flex-grow-1">
-                    <button class="btn btn-danger w-100">
+                    <button class="btn btn-theme btn-theme-delete w-100">
                         <i class="fas fa-trash me-2"></i>Delete
                     </button>
                 </form>
@@ -331,7 +331,7 @@
                     </div>
                 </div>
 
-                <button class="btn btn-success w-100" type="submit">
+                <button class="btn btn-theme btn-theme-primary w-100" type="submit">
                     <i class="fas fa-paper-plane me-2"></i>Submit Review
                 </button>
             </form>
@@ -384,7 +384,7 @@
                     <% if(currentUser && review.author.equals(currentUser._id)) { %>
                     <div class="review-actions">
                         <form action="/campgrounds/<%=campground._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST" style="display: inline;">
-                            <button class="btn btn-danger btn-sm review-actions-btn" title="Delete this review">
+                            <button class="btn btn-theme btn-theme-delete btn-sm review-actions-btn" title="Delete this review">
                                 <i class="fas fa-trash me-1"></i>Delete
                             </button>
                         </form>
