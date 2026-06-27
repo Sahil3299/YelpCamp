@@ -55,26 +55,40 @@
 .btn-primary:hover {
     color: #ffffff;
     background: linear-gradient(135deg, var(--color-accent-dark), var(--color-accent));
+    border-color: var(--color-accent-dark);
 }
 
 .btn-success {
-    background: var(--gradient-accent);
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
     border-color: var(--color-success);
 }
 
 .btn-success:hover {
     color: #ffffff;
-    background: linear-gradient(135deg, var(--color-accent-dark), var(--color-accent));
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    border-color: #047857;
 }
 
 .btn-info {
-    background: linear-gradient(135deg, var(--color-info), #0891b2);
-    border-color: var(--color-info);
+    background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+    border-color: #0891b2;
+}
+
+.btn-info:hover {
+    color: #ffffff;
+    background: linear-gradient(135deg, #0e7490 0%, #164e63 100%);
+    border-color: #164e63;
 }
 
 .btn-danger {
-    background: linear-gradient(135deg, var(--color-error), #dc2626);
-    border-color: var(--color-error);
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    border-color: #b91c1c;
+}
+
+.btn-danger:hover {
+    color: #ffffff;
+    background: linear-gradient(135deg, #b91c1c 0%, #7f1d1d 100%);
+    border-color: #7f1d1d;
 }
 
 .btn-light {
@@ -740,6 +754,8 @@
     box-shadow: var(--shadow-sm);
     transition: all var(--transition-base);
     padding: 1rem 0;
+    position: relative;
+    z-index: 1030;
 }
 
 .navbar > .container-lg {
@@ -971,11 +987,27 @@
     border: 1px solid var(--border-color);
     box-shadow: var(--shadow-md);
     animation: slideDown 0.2s ease-out;
+    z-index: 1050 !important;
+    position: absolute !important;
+    min-width: 160px;
+    background-color: var(--color-bg-primary);
+    display: none;
+}
+
+.dropdown-menu.show {
+    display: block;
 }
 
 .dropdown-menu .dropdown-item {
     transition: all var(--transition-fast);
     padding: 0.75rem 1rem;
+    color: var(--color-text-primary);
+    background-color: transparent;
+    display: block;
+    width: 100%;
+    text-align: left;
+    border: none;
+    cursor: pointer;
 }
 
 .dropdown-menu .dropdown-item:hover {
@@ -983,8 +1015,16 @@
     color: var(--color-primary);
 }
 
+.dropdown-menu .dropdown-item.active,
+.dropdown-menu .dropdown-item:active {
+    background: var(--bg-hover);
+    color: var(--color-primary);
+}
+
 .dropdown-menu .dropdown-divider {
     margin: 0.5rem 0;
+    border: none;
+    border-top: 1px solid var(--border-color);
 }
 
 @keyframes slideDown {

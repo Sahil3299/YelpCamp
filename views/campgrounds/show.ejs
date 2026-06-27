@@ -21,34 +21,181 @@
 <div class="row g-4 mb-5">
     <!-- Left Column - Images and Details -->
     <div class="col-lg-7">
-        <!-- Image Carousel -->
+        <!-- Modern Image Carousel -->
         <% const galleryImages = [campground.image, ...((campground.images || []))].filter(Boolean).filter((img, index, arr) => arr.indexOf(img) === index); %>
-        <div id="imageCarousel" class="carousel slide campground-carousel mb-4" data-bs-ride="carousel" data-bs-interval="4500" data-bs-pause="hover" data-bs-touch="true">
-            <% if(galleryImages.length > 1) { %>
-            <div class="carousel-indicators campground-carousel-indicators">
-                <% galleryImages.forEach((img, index) => { %>
-                <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="<%= index %>" class="<%= index === 0 ? 'active' : '' %>" aria-current="<%= index === 0 ? 'true' : 'false' %>" aria-label="Show image <%= index + 1 %>"></button>
-                <% }) %>
-            </div>
-            <% } %>
-
-            <div class="carousel-inner">
-                <% galleryImages.forEach((img, index) => { %>
-                <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
-                    <img src="<%= img %>" class="d-block w-100" alt="<%= campground.title %> image <%= index + 1 %>">
+        <div id="campgroundCarousel" class="campground-carousel-container mb-4" role="region" aria-label="Campground images carousel">
+            <div class="carousel-wrapper" data-total-images="<%= galleryImages.length %>">
+                <div class="carousel-main">
+                    <% galleryImages.forEach((img, index) => { %>
+                    <div class="carousel-slide <%= index === 0 ? 'active' : '' %>" data-slide-index="<%= index %>">
+                        <img src="<%= img %>" alt="<%= campground.title %> image <%= index + 1 %>" class="carousel-image" loading="lazy">
+                        <div class="carousel-slide-overlay"></div>
+                    </div>
+                    <% }) %>
                 </div>
-                <% }) %>
-            </div>
 
-            <% if(galleryImages.length > 1) { %>
-            <button class="carousel-control-prev campground-carousel-control" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev" aria-label="Previous image">
-                <span aria-hidden="true"><i class="fas fa-chevron-left"></i></span>
-            </button>
-            <button class="carousel-control-next campground-carousel-control" type="button" data-bs-target="#imageCarousel" data-bs-slide="next" aria-label="Next image">
-                <span aria-hidden="true"><i class="fas fa-chevron-right"></i></span>
-            </button>
-            <% } %>
+                <!-- Image Counter -->
+                <div class="carousel-counter" aria-live="polite" aria-atomic="true">
+                    <span class="counter-current">1</span> / <span class="counter-total"><%= galleryImages.length %></span>
+                </div>
+
+                <!-- Navigation Arrows -->
+                <% if(galleryImages.length > 1) { %>
+                <button class="carousel-nav-btn carousel-prev" aria-label="Previous image" title="Previous (← key)">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-nav-btn carousel-next" aria-label="Next image" title="Next (→ key)">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <% } %>
+
+                <!-- Image Indicators -->
+                <% if(galleryImages.length > 1) { %>
+                <div class="carousel-indicators-container">
+                    <% galleryImages.forEach((img, index) => { %>
+                    <button class="carousel-indicator <%= index === 0 ? 'active' : '' %>" 
+                            data-slide-to="<%= index %>" 
+                            aria-label="Go to image <%= index + 1 %>"
+                            aria-current="<%= index === 0 ? 'true' : 'false' %>"></button>
+                    <% }) %>
+                </div>
+                <% } %>
+            </div>
         </div>
+
+        <script>
+            // Modern Carousel Implementation
+            (function() {
+                const carouselContainer = document.getElementById('campgroundCarousel');
+                if (!carouselContainer) return;
+
+                const wrapper = carouselContainer.querySelector('.carousel-wrapper');
+                const slides = carouselContainer.querySelectorAll('.carousel-slide');
+                const indicators = carouselContainer.querySelectorAll('.carousel-indicator');
+                const prevBtn = carouselContainer.querySelector('.carousel-prev');
+                const nextBtn = carouselContainer.querySelector('.carousel-next');
+                const counterCurrent = carouselContainer.querySelector('.counter-current');
+                const totalImages = slides.length;
+
+                let currentIndex = 0;
+                let touchStartX = 0;
+                let touchEndX = 0;
+                let autoPlayTimeout;
+
+                // Update carousel display
+                function updateCarousel(newIndex) {
+                    // Handle wrap-around
+                    if (newIndex >= totalImages) newIndex = 0;
+                    if (newIndex < 0) newIndex = totalImages - 1;
+
+                    currentIndex = newIndex;
+
+                    // Update slides with fade transition
+                    slides.forEach((slide, index) => {
+                        slide.classList.remove('active');
+                        if (index === newIndex) {
+                            slide.classList.add('active');
+                        }
+                    });
+
+                    // Update indicators
+                    indicators.forEach((indicator, index) => {
+                        indicator.classList.toggle('active', index === newIndex);
+                        indicator.setAttribute('aria-current', index === newIndex ? 'true' : 'false');
+                    });
+
+                    // Update counter
+                    counterCurrent.textContent = newIndex + 1;
+
+                    // Reset auto-play
+                    clearTimeout(autoPlayTimeout);
+                    autoPlayTimeout = setTimeout(() => {
+                        if (totalImages > 1) updateCarousel(currentIndex + 1);
+                    }, 4500);
+                }
+
+                // Navigation functions
+                function goToSlide(index) {
+                    updateCarousel(index);
+                }
+
+                function nextSlide() {
+                    updateCarousel(currentIndex + 1);
+                }
+
+                function prevSlide() {
+                    updateCarousel(currentIndex - 1);
+                }
+
+                // Event listeners for buttons
+                if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+                if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+
+                // Indicator click handling
+                indicators.forEach((indicator, index) => {
+                    indicator.addEventListener('click', () => goToSlide(index));
+                });
+
+                // Keyboard navigation
+                document.addEventListener('keydown', (e) => {
+                    if (!carouselContainer.closest('main')) return; // Only if carousel is visible
+                    if (e.key === 'ArrowLeft') {
+                        e.preventDefault();
+                        prevSlide();
+                    } else if (e.key === 'ArrowRight') {
+                        e.preventDefault();
+                        nextSlide();
+                    }
+                });
+
+                // Touch/Swipe support
+                const carouselMain = carouselContainer.querySelector('.carousel-main');
+                if (carouselMain) {
+                    carouselMain.addEventListener('touchstart', (e) => {
+                        touchStartX = e.changedTouches[0].screenX;
+                    }, false);
+
+                    carouselMain.addEventListener('touchend', (e) => {
+                        touchEndX = e.changedTouches[0].screenX;
+                        handleSwipe();
+                    }, false);
+
+                    function handleSwipe() {
+                        const swipeThreshold = 50;
+                        const diff = touchStartX - touchEndX;
+
+                        if (Math.abs(diff) > swipeThreshold) {
+                            if (diff > 0) {
+                                // Swiped left - show next
+                                nextSlide();
+                            } else {
+                                // Swiped right - show previous
+                                prevSlide();
+                            }
+                        }
+                    }
+                }
+
+                // Stop auto-play on mouse enter
+                carouselContainer.addEventListener('mouseenter', () => {
+                    clearTimeout(autoPlayTimeout);
+                });
+
+                // Resume auto-play on mouse leave
+                carouselContainer.addEventListener('mouseleave', () => {
+                    autoPlayTimeout = setTimeout(() => {
+                        if (totalImages > 1) updateCarousel(currentIndex + 1);
+                    }, 4500);
+                });
+
+                // Initial auto-play start
+                if (totalImages > 1) {
+                    autoPlayTimeout = setTimeout(() => {
+                        updateCarousel(currentIndex + 1);
+                    }, 4500);
+                }
+            })();
+        </script>
 
         <!-- Campground Details -->
         <% const reviewCount = campground.reviews.length; %>
