@@ -13,7 +13,7 @@
             <div class="form-section">
                 <h3 class="form-section-title mb-4">Campground Information</h3>
                 
-                <form action="/campgrounds" method="POST" novalidate class="validated-form">
+                <form action="/campgrounds" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
                     <!-- Basic Information -->
                     <div class="form-row">
                         <div>
@@ -106,27 +106,17 @@
 
                         <div class="form-group-vertical">
                             <label class="form-label" for="image">
-                                <i class="fas fa-image text-primary me-1"></i>Main Image URL*
+                                <i class="fas fa-camera text-primary me-1"></i>Upload Images*
                             </label>
-                            <input class="form-control" type="text" id="image" name="campground[image]" 
-                                placeholder="https://example.com/image.jpg" required>
+                            <input class="form-control" type="file" id="image" name="image"
+                                multiple accept="image/*" required>
                             <small class="text-muted">
-                                <i class="fas fa-info-circle me-1"></i>This will be displayed on campground cards
+                                <i class="fas fa-info-circle me-1"></i>You can select multiple images (max 6). Accepted formats: jpeg, png, webp.
                             </small>
+                            <div id="file-feedback" class="mt-2 text-muted small"></div>
                             <div class="valid-feedback">
                                 <i class="fas fa-check me-1"></i>Looks good!
                             </div>
-                        </div>
-
-                        <div class="form-group-vertical">
-                            <label class="form-label" for="images">
-                                <i class="fas fa-images text-primary me-1"></i>Additional Images (Optional)
-                            </label>
-                            <textarea class="form-control" id="images" name="campground[images]" rows="3"
-                                placeholder="https://example.com/image1.jpg, https://example.com/image2.jpg, https://example.com/image3.jpg"></textarea>
-                            <small class="text-muted">
-                                <i class="fas fa-info-circle me-1"></i>Enter URLs separated by commas
-                            </small>
                         </div>
                     </div>
 
@@ -146,3 +136,14 @@
 </div>
 
 <script src="/javascripts/locationAutocomplete.js"></script>
+<script>
+    document.getElementById('image').addEventListener('change', function(e) {
+        const feedback = document.getElementById('file-feedback');
+        const count = e.target.files.length;
+        if (count === 0) {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = count + ' image' + (count > 1 ? 's' : '') + ' selected';
+        }
+    });
+</script>

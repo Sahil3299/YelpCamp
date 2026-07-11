@@ -1,12 +1,14 @@
 const Joi = require('joi');
-const { number } = require('joi');
+
+const imageSchema = Joi.object({
+    url: Joi.string().required(),
+    filename: Joi.string().required()
+});
 
 module.exports.campgroundSchema = Joi.object({
     campground: Joi.object({
         title: Joi.string().required(),
         price: Joi.number().required().min(0),
-        image: Joi.string().required(),
-        images: Joi.array().items(Joi.string()),
         location: Joi.string().required(),
         country: Joi.string().required(),
         description: Joi.string().required()
@@ -19,4 +21,3 @@ module.exports.reviewSchema = Joi.object({
         body: Joi.string().required()
     }).required()
 })
-

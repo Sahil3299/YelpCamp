@@ -257,6 +257,11 @@ small, .text-sm {
     background: var(--color-primary-light);
 }
 
+/* Bootstrap background overrides */
+.bg-primary {
+    background-color: var(--color-primary) !important;
+}
+
 /* Selection */
 ::selection {
     background-color: var(--color-primary);

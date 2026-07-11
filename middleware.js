@@ -2,6 +2,21 @@ const { campgroundSchema, reviewSchema } = require('./schemas.js');
 const ExpressError = require('./utils/ExpressError');
 const Campground = require('./models/campground');
 const Review = require('./models/review');
+const multer = require('multer');
+const { storage } = require('./cloudinary');
+const upload = multer({
+    storage,
+    limits: { fileSize: 5 * 1024 * 1024 },
+    fileFilter(req, file, cb) {
+        if (file.mimetype.startsWith('image/')) {
+            cb(null, true);
+        } else {
+            cb(new ExpressError('Only image files are allowed (jpeg, png, jpg, webp).', 400), false);
+        }
+    }
+});
+
+module.exports.upload = upload;
 
 module.exports.isLoggedIn = (req, res, next) => {
     if (!req.isAuthenticated()) {
@@ -13,19 +28,6 @@ module.exports.isLoggedIn = (req, res, next) => {
 }
 
 module.exports.validateCampground = (req, res, next) => {
-    if (req.body.campground) {
-        const { images } = req.body.campground;
-
-        if (typeof images === 'string') {
-            req.body.campground.images = images
-                .split(',')
-                .map(img => img.trim())
-                .filter(Boolean);
-        } else if (!Array.isArray(images)) {
-            req.body.campground.images = [];
-        }
-    }
-
     const { error } = campgroundSchema.validate(req.body);
     if (error) {
         const msg = error.details.map(el => el.message).join(',')

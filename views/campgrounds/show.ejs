@@ -22,7 +22,7 @@
     <!-- Left Column - Images and Details -->
     <div class="col-lg-7">
         <!-- Modern Image Carousel -->
-        <% const galleryImages = [campground.image, ...((campground.images || []))].filter(Boolean).filter((img, index, arr) => arr.indexOf(img) === index); %>
+        <% const galleryImages = (campground.images || []).map(img => img.url).filter(Boolean); %>
         <div id="campgroundCarousel" class="campground-carousel-container mb-4" role="region" aria-label="Campground images carousel">
             <div class="carousel-wrapper" data-total-images="<%= galleryImages.length %>">
                 <div class="carousel-main">

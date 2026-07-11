@@ -13,7 +13,7 @@
             <div class="form-section">
                 <h3 class="form-section-title mb-4">Campground Information</h3>
                 
-                <form action="/campgrounds/<%=campground._id%>?_method=PUT" method="POST" novalidate class="validated-form">
+                <form action="/campgrounds/<%=campground._id%>?_method=PUT" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
                     <!-- Basic Information -->
                     <div class="form-row">
                         <div>
@@ -103,28 +103,39 @@
                             <i class="fas fa-images text-info me-2"></i>Images
                         </h5>
 
-                        <div class="form-group-vertical">
-                            <label class="form-label" for="image">
-                                <i class="fas fa-image text-info me-1"></i>Main Image URL*
-                            </label>
-                            <input class="form-control" type="text" id="image" name="campground[image]"
-                                value="<%=campground.image %>" required>
-                            <small class="text-muted">
-                                <i class="fas fa-info-circle me-1"></i>This will be displayed on campground cards
-                            </small>
-                            <div class="valid-feedback">
-                                <i class="fas fa-check me-1"></i>Looks good!
+                        <% if (campground.images && campground.images.length > 0) { %>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Current Images</label>
+                            <p class="text-muted small mb-2">Check images you want to delete.</p>
+                            <div class="row g-3">
+                                <% campground.images.forEach((img, index) => { %>
+                                <div class="col-6 col-md-4">
+                                    <div class="position-relative border rounded overflow-hidden">
+                                        <img src="<%= img.thumbnail || img.url.replace('/upload/', '/upload/w_200/') %>"
+                                            alt="Campground image <%= index + 1 %>" class="w-100" style="height: 140px; object-fit: cover;">
+                                        <div class="form-check position-absolute" style="top: 6px; left: 6px; background: rgba(255,255,255,0.85); border-radius: 4px; padding: 2px 6px;">
+                                            <input class="form-check-input" type="checkbox"
+                                                name="deleteImages[]" value="<%= img.filename %>"
+                                                id="deleteImage-<%= index %>">
+                                            <label class="form-check-label small" for="deleteImage-<%= index %>">Delete</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% }) %>
                             </div>
                         </div>
+                        <% } %>
 
                         <div class="form-group-vertical">
-                            <label class="form-label" for="images">
-                                <i class="fas fa-images text-info me-1"></i>Additional Images (Optional)
+                            <label class="form-label" for="image">
+                                <i class="fas fa-camera text-info me-1"></i>Upload New Images
                             </label>
-                            <textarea class="form-control" id="images" name="campground[images]" rows="3"><%=campground.images ? campground.images.join(', ') : '' %></textarea>
+                            <input class="form-control" type="file" id="image" name="image"
+                                multiple accept="image/*">
                             <small class="text-muted">
-                                <i class="fas fa-info-circle me-1"></i>Enter URLs separated by commas
+                                <i class="fas fa-info-circle me-1"></i>Add more images (max 6). Accepted formats: jpeg, png, webp.
                             </small>
+                            <div id="file-feedback" class="mt-2 text-muted small"></div>
                         </div>
                     </div>
 
@@ -144,3 +155,14 @@
 </div>
 
 <script src="/javascripts/locationAutocomplete.js"></script>
+<script>
+    document.getElementById('image').addEventListener('change', function(e) {
+        const feedback = document.getElementById('file-feedback');
+        const count = e.target.files.length;
+        if (count === 0) {
+            feedback.textContent = '';
+        } else {
+            feedback.textContent = count + ' new image' + (count > 1 ? 's' : '') + ' selected';
+        }
+    });
+</script>

@@ -45,7 +45,7 @@
     <% for (let campground of campgrounds){%>
     <div class="campground-card stagger-item hover-lift">
         <div class="campground-card-image image-hover-overlay">
-            <img src="<%= campground.image %>" alt="<%= campground.title %>" class="w-100 h-100" style="object-fit: cover;">
+            <img src="<%= campground.thumbnail %>" alt="<%= campground.title %>" class="w-100 h-100" style="object-fit: cover;">
             <% if(campground.author) {%>
             <span class="campground-card-badge"><i class="fas fa-check me-1"></i>Verified</span>
             <% } %>
@@ -90,7 +90,7 @@
         location: campground.location,
         country: campground.country,
         description: campground.description,
-        image: campground.image,
+        image: campground.thumbnail,
         geometry: campground.geometry
     }))) %>;
     window.mapTilerApiKey = <%- JSON.stringify(mapTilerApiKey) %>;

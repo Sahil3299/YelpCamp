@@ -91,6 +91,18 @@ app.all('*', (req, res, next) => {
 })
 
 app.use((err, req, res, next) => {
+    if (err.code === 'LIMIT_FILE_SIZE') {
+        req.flash('error', 'File is too large. Maximum size is 5MB per image.');
+        return res.redirect('back');
+    }
+    if (err.code === 'LIMIT_FILE_COUNT') {
+        req.flash('error', 'Too many files. Maximum is 6 images.');
+        return res.redirect('back');
+    }
+    if (err.message && err.message.includes('Only image files')) {
+        req.flash('error', err.message);
+        return res.redirect('back');
+    }
     const { statusCode = 500 } = err;
     if (!err.message) err.message = 'Oh No, Something Went Wrong!'
     res.status(statusCode).render('error', { err, showStack: process.env.NODE_ENV !== 'production' })
