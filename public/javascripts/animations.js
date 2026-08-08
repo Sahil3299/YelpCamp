@@ -370,20 +370,21 @@ function initializeButtonLoading() {
     const forms = document.querySelectorAll('form');
 
     forms.forEach(form => {
-        form.addEventListener('submit', function () {
+        form.addEventListener('submit', function (event) {
             const submitBtn = this.querySelector('button[type="submit"]');
-            if (submitBtn && !this.hasAttribute('data-no-loading')) {
+            if (
+                event.defaultPrevented ||
+                !this.checkValidity() ||
+                this.hasAttribute('data-no-loading') ||
+                this.hasAttribute('data-upload-form')
+            ) {
+                return;
+            }
+
+            if (submitBtn) {
                 submitBtn.disabled = true;
                 submitBtn.classList.add('btn-loading');
-                const originalText = submitBtn.innerHTML;
                 submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Loading...';
-
-                // Re-enable button after a timeout (in case of errors)
-                setTimeout(() => {
-                    submitBtn.disabled = false;
-                    submitBtn.classList.remove('btn-loading');
-                    submitBtn.innerHTML = originalText;
-                }, 5000);
             }
         });
     });

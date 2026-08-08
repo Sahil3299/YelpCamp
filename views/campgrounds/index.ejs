@@ -1,14 +1,15 @@
 <% layout('layouts/boilerplate')%>
 
-<div class="page-kicker">All spots</div>
-<div class="campgrounds-heading mb-5">
+<section class="campgrounds-page py-3 py-md-4">
+<div class="page-kicker">Explore the collection</div>
+<div class="campgrounds-heading product-page-header mb-5">
     <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
         <div>
             <h1 class="mb-1">Campgrounds</h1>
             <p class="text-muted mb-0">Browse <%= campgrounds.length %> spots from our community.</p>
         </div>
         <a href="/campgrounds/new" class="btn btn-theme btn-theme-primary btn-lg" title="Add a new campground">
-            Share a spot
+            <i class="fas fa-plus me-2"></i>Share a spot
         </a>
     </div>
 </div>
@@ -45,7 +46,8 @@
     <% for (let campground of campgrounds){%>
     <div class="campground-card stagger-item hover-lift">
         <div class="campground-card-image image-hover-overlay">
-            <img src="<%= campground.thumbnail %>" alt="<%= campground.title %>" class="w-100 h-100" style="object-fit: cover;">
+            <% const imageUrl = campground.thumbnail || '/images/yelpcamp.png'; %>
+            <img src="<%= imageUrl %>" alt="<%= campground.title %>" class="w-100 h-100" style="object-fit: cover;" loading="lazy">
             <% if(campground.author) {%>
             <span class="campground-card-badge"><i class="fas fa-check me-1"></i>Verified</span>
             <% } %>
@@ -82,6 +84,7 @@
     <% }%>
 </div>
 <% }%>
+</section>
 
 <script>
     window.campgrounds = <%- JSON.stringify(campgrounds.map(campground => ({

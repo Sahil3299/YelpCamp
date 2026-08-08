@@ -1,0 +1,106 @@
+<% layout('layouts/boilerplate') %>
+<% const currency = value => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(value); %>
+<% const hasLinkedCampgrounds = trip.itinerary.some(day => day.activities.some(activity => activity.campgroundId && activity.campgroundId._id)); %>
+
+<section class="trip-detail-page py-4 py-md-5" style="max-width: 940px; margin: 0 auto;">
+    <div class="trip-detail-hero d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
+        <div>
+            <a href="/trips" class="small text-decoration-none"><i class="fas fa-arrow-left me-1"></i>My trips</a>
+            <div class="page-kicker mt-3">Your itinerary</div>
+            <h1 class="mb-1"><%= trip.title %></h1>
+            <p class="text-muted mb-0"><%= trip.from %> to <%= trip.destination %> · <%= trip.days %> days</p>
+        </div>
+        <% if (trip.budgetSatisfied) { %>
+        <span class="badge text-bg-success fs-6">Within your budget</span>
+        <% } else { %>
+        <span class="badge text-bg-warning fs-6">Over your budget</span>
+        <% } %>
+    </div>
+
+    <div class="card trip-cost-card mb-4">
+        <div class="card-body p-4">
+            <div class="row g-4 align-items-center">
+                <div class="col-md-5">
+                    <div class="text-muted small text-uppercase fw-semibold mb-1">Estimated trip cost</div>
+                    <div class="display-6 fw-bold"><%= currency(trip.estimatedCost) %></div>
+                    <div class="text-muted small">Budget: <%= currency(trip.budget) %></div>
+                </div>
+                <div class="col-md-7">
+                    <div class="row text-center g-2">
+                        <div class="col-4"><div class="small text-muted">Camping</div><strong><%= currency(trip.costBreakdown.accommodation) %></strong></div>
+                        <div class="col-4"><div class="small text-muted">Activities</div><strong><%= currency(trip.costBreakdown.activities) %></strong></div>
+                        <div class="col-4"><div class="small text-muted">Travel reserve</div><strong><%= currency(trip.costBreakdown.travel) %></strong></div>
+                    </div>
+                </div>
+            </div>
+            <p class="small text-muted mt-4 mb-0">Camping costs come from YelpCamp listings. Activity and travel amounts are conservative planning allowances, not booking prices.</p>
+        </div>
+    </div>
+
+    <% if (!hasLinkedCampgrounds) { %>
+    <div class="alert alert-warning" role="alert">
+        <i class="fas fa-triangle-exclamation me-2"></i>No YelpCamp campgrounds matched <strong><%= trip.destination %></strong> when this plan was generated. Add a campground for that area, then regenerate the trip.
+    </div>
+    <% } %>
+
+    <div class="card trip-refine-card mb-5">
+        <div class="card-body p-4 d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
+            <div>
+                <h2 class="h5 mb-1">Refine this plan</h2>
+                <p class="small text-muted mb-0">Regeneration only re-ranks real YelpCamp campgrounds; it does not invent places or reviews.</p>
+            </div>
+            <form action="/trips/<%= trip._id %>/regenerate" method="POST" class="d-flex gap-2 flex-wrap">
+                <label class="visually-hidden" for="adjustment">Adjustment</label>
+                <select id="adjustment" name="adjustment" class="form-select">
+                    <option value="cheaper">Make it cheaper</option>
+                    <option value="more-camping">More camping</option>
+                    <option value="more-beaches">More beaches</option>
+                    <option value="less-travel">Less travel</option>
+                    <option value="more-adventurous">More adventurous</option>
+                    <option value="relaxed">Relaxed trip</option>
+                </select>
+                <button class="btn btn-theme btn-theme-secondary" type="submit"><i class="fas fa-rotate me-2"></i>Regenerate</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="h3 mb-0">Day by day</h2>
+        <% if (trip.interests.length) { %><span class="small text-muted"><%= trip.interests.join(' · ') %></span><% } %>
+    </div>
+    <div class="vstack gap-4">
+        <% trip.itinerary.forEach(day => { %>
+        <article class="card trip-itinerary-card">
+            <div class="card-body p-4">
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <span class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center fw-bold" style="width: 2.5rem; height: 2.5rem;"><%= day.day %></span>
+                    <h3 class="h4 mb-0">Day <%= day.day %></h3>
+                </div>
+                <div class="vstack gap-3">
+                    <% day.activities.forEach(activity => { %>
+                    <% const campground = activity.campgroundId; %>
+                    <div class="border-start border-3 border-primary ps-3">
+                        <div class="small text-muted fw-semibold mb-1"><%= activity.time %></div>
+                        <h4 class="h5 mb-1"><%= activity.title %></h4>
+                        <p class="mb-2 text-muted"><%= activity.description %></p>
+                        <% if (campground && campground._id) { %>
+                        <div class="d-flex align-items-center flex-wrap gap-2">
+                            <% if (campground.rating) { %><span class="small"><i class="fas fa-star text-warning me-1"></i><%= campground.rating %></span><% } %>
+                            <span class="small"><strong><%= currency(campground.price || 0) %></strong>/night</span>
+                            <a class="btn btn-sm btn-theme btn-theme-secondary" href="/campgrounds/<%= campground._id %>">View campground</a>
+                        </div>
+                        <% } else { %>
+                        <span class="small text-muted">Planning allowance: <%= currency(activity.estimatedCost) %></span>
+                        <% } %>
+                    </div>
+                    <% }) %>
+                </div>
+            </div>
+        </article>
+        <% }) %>
+    </div>
+
+    <form action="/trips/<%= trip._id %>?_method=DELETE" method="POST" class="mt-4" onsubmit="return confirm('Delete this trip?');">
+        <button class="btn trip-delete-btn btn-sm" type="submit"><i class="fas fa-trash me-1"></i>Delete trip</button>
+    </form>
+</section>

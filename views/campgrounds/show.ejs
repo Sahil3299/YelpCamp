@@ -23,6 +23,7 @@
     <div class="col-lg-7">
         <!-- Modern Image Carousel -->
         <% const galleryImages = (campground.images || []).map(img => img.url).filter(Boolean); %>
+        <% if (galleryImages.length === 0) galleryImages.push('/images/yelpcamp.png'); %>
         <div id="campgroundCarousel" class="campground-carousel-container mb-4" role="region" aria-label="Campground images carousel">
             <div class="carousel-wrapper" data-total-images="<%= galleryImages.length %>">
                 <div class="carousel-main">

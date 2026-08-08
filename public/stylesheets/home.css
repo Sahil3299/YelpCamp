@@ -135,6 +135,27 @@
     box-shadow: 0 18px 40px rgba(41, 79, 37, 0.2);
 }
 
+.home-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.home-secondary-cta {
+    border-color: rgba(255, 255, 255, 0.68) !important;
+    background: rgba(255, 255, 255, 0.12) !important;
+    color: #ffffff !important;
+    backdrop-filter: blur(8px);
+}
+
+.home-secondary-cta:hover,
+.home-secondary-cta:focus-visible {
+    border-color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.24) !important;
+    color: #ffffff !important;
+}
+
 .home-features {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -206,5 +227,14 @@
 
     .home-hero-content {
         text-align: left;
+    }
+
+    .home-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .home-actions .btn {
+        justify-content: center;
     }
 }

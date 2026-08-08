@@ -1,0 +1,85 @@
+<% layout('layouts/boilerplate') %>
+
+<section class="trip-planner-page py-4 py-md-5 mx-auto" style="max-width: 1040px;">
+    <div class="trip-planner-intro text-center mb-5">
+        <div class="page-kicker">YelpCamp trip planner</div>
+        <h1 class="mb-2">Plan a trip around real campgrounds</h1>
+        <p class="text-muted mb-0">Tell us where you are going and we will build a budget-checked itinerary from campgrounds in YelpCamp.</p>
+    </div>
+
+    <div class="trip-planner-shell">
+        <aside class="trip-planner-visual" aria-label="Mountain camping landscape">
+            <div class="trip-planner-visual-content">
+                <span class="trip-visual-label"><i class="fas fa-compass me-2"></i>Personal itinerary</span>
+                <div>
+                    <h2 class="h3 mt-4 mb-2">The route is yours.</h2>
+                    <p class="mb-0">Build around campgrounds that actually exist in YelpCamp, with a clear budget before you go.</p>
+                </div>
+            </div>
+        </aside>
+    <div class="card trip-planner-card">
+        <div class="card-body p-4 p-md-5">
+            <form action="/trips/generate" method="POST" class="validated-form" novalidate>
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <label for="trip-from" class="form-label fw-semibold">Starting location</label>
+                        <input id="trip-from" name="trip[from]" class="form-control" type="text" minlength="2" maxlength="120"
+                            value="<%= trip.from || '' %>" placeholder="Pune" required>
+                        <div class="invalid-feedback">Please enter where your trip starts.</div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="trip-destination" class="form-label fw-semibold">Destination</label>
+                        <input id="trip-destination" name="trip[destination]" class="form-control" type="text" minlength="2" maxlength="120"
+                            value="<%= trip.destination || '' %>" placeholder="Goa" required>
+                        <div class="form-text">We look for this name in YelpCamp locations, countries, titles, and descriptions.</div>
+                        <div class="invalid-feedback">Please enter a destination.</div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="trip-days" class="form-label fw-semibold">Number of days</label>
+                        <input id="trip-days" name="trip[days]" class="form-control" type="number" min="1" max="30" step="1"
+                            value="<%= trip.days || '' %>" placeholder="4" required>
+                        <div class="invalid-feedback">Choose between 1 and 30 days.</div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="trip-budget" class="form-label fw-semibold">Budget (₹)</label>
+                        <input id="trip-budget" name="trip[budget]" class="form-control" type="number" min="0" step="1"
+                            value="<%= trip.budget || '' %>" placeholder="15000" required>
+                        <div class="invalid-feedback">Please enter a valid budget.</div>
+                    </div>
+                    <div class="col-12">
+                        <fieldset>
+                            <legend class="form-label fw-semibold mb-3">What do you like?</legend>
+                            <div class="row row-cols-1 row-cols-sm-2 g-2">
+                                <% const interests = trip.interests || []; %>
+                                <% const choices = [
+                                    ['camping', 'Camping', 'fa-campground'],
+                                    ['beaches', 'Beaches', 'fa-umbrella-beach'],
+                                    ['adventure', 'Adventure', 'fa-mountain-sun'],
+                                    ['food', 'Food', 'fa-utensils'],
+                                    ['nightlife', 'Nightlife', 'fa-moon']
+                                ]; %>
+                                <% choices.forEach(([value, label, icon]) => { %>
+                                <div class="col">
+                                    <label class="border rounded-3 p-3 d-flex align-items-center gap-2 h-100 w-100" for="interest-<%= value %>">
+                                        <input id="interest-<%= value %>" class="form-check-input mt-0" type="checkbox" name="trip[interests][]"
+                                            value="<%= value %>" <%= interests.includes(value) ? 'checked' : '' %>>
+                                        <i class="fas <%= icon %> text-primary"></i>
+                                        <span><%= label %></span>
+                                    </label>
+                                </div>
+                                <% }) %>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="col-12 d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3 pt-2">
+                        <p class="small text-muted mb-0"><i class="fas fa-shield-halved me-1"></i>Your budget is checked on the server before the plan is shown.</p>
+                        <button class="btn btn-theme btn-theme-primary btn-lg px-4" type="submit">
+                            <i class="fas fa-wand-magic-sparkles me-2"></i>Generate trip
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+</section>

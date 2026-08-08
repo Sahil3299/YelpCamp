@@ -21,3 +21,16 @@ module.exports.reviewSchema = Joi.object({
         body: Joi.string().required()
     }).required()
 })
+
+module.exports.tripSchema = Joi.object({
+    trip: Joi.object({
+        from: Joi.string().trim().min(2).max(120).required(),
+        destination: Joi.string().trim().min(2).max(120).required(),
+        days: Joi.number().integer().min(1).max(30).required(),
+        budget: Joi.number().min(0).max(10000000).required(),
+        interests: Joi.array()
+            .items(Joi.string().valid('camping', 'beaches', 'adventure', 'food', 'nightlife'))
+            .max(5)
+            .default([])
+    }).required()
+});

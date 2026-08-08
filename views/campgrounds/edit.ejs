@@ -13,7 +13,7 @@
             <div class="form-section">
                 <h3 class="form-section-title mb-4">Campground Information</h3>
                 
-                <form action="/campgrounds/<%=campground._id%>?_method=PUT" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+                <form action="/campgrounds/<%=campground._id%>?_method=PUT" method="POST" novalidate class="validated-form" enctype="multipart/form-data" data-upload-form>
                     <!-- Basic Information -->
                     <div class="form-row">
                         <div>
@@ -136,12 +136,13 @@
                                 <i class="fas fa-info-circle me-1"></i>Add more images (max 6). Accepted formats: jpeg, png, webp.
                             </small>
                             <div id="file-feedback" class="mt-2 text-muted small"></div>
+                            <div class="upload-status mt-3" data-upload-status role="status" aria-live="polite" hidden></div>
                         </div>
                     </div>
 
                     <!-- Form Actions -->
                     <div class="d-flex gap-3 mt-5">
-                        <button class="btn btn-theme btn-theme-secondary btn-lg" type="submit">
+                        <button class="btn btn-theme btn-theme-secondary btn-lg" type="submit" data-upload-submit>
                             <i class="fas fa-save me-2"></i>Update Campground
                         </button>
                         <a href="/campgrounds/<%= campground._id%>" class="btn btn-theme btn-theme-outline btn-theme-neutral btn-lg">

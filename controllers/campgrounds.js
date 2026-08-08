@@ -3,6 +3,8 @@ const ExpressError = require('../utils/ExpressError');
 const { cloudinary } = require('../cloudinary');
 const { forwardGeocode, reverseGeocode } = require('../utils/maptiler');
 
+const isJsonRequest = req => req.get('Accept') && req.get('Accept').includes('application/json');
+
 const buildLocationQuery = campgroundData => {
     return [campgroundData.location, campgroundData.country].filter(Boolean).join(', ');
 };
@@ -40,6 +42,9 @@ module.exports.createCampground = async (req, res, next) => {
     campground.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
     await campground.save();
     req.flash('success', 'Successfully made a new campground!');
+    if (isJsonRequest(req)) {
+        return res.status(201).json({ redirectUrl: `/campgrounds/${campground._id}` });
+    }
     res.redirect(`/campgrounds/${campground._id}`)
 }
 
@@ -96,6 +101,9 @@ module.exports.updateCampground = async (req, res) => {
     Object.assign(campground, campgroundData);
     await campground.save();
     req.flash('success', 'Successfully updated campground!');
+    if (isJsonRequest(req)) {
+        return res.json({ redirectUrl: `/campgrounds/${campground._id}` });
+    }
     res.redirect(`/campgrounds/${campground._id}`)
 }
 

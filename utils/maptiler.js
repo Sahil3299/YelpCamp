@@ -1,6 +1,7 @@
 const ExpressError = require('./ExpressError');
 
 const MAPTILER_GEOCODING_URL = 'https://api.maptiler.com/geocoding';
+const MAPTILER_TIMEOUT_MS = 10000;
 
 const getApiKey = () => process.env.MAPTILER_API_KEY || process.env.MAPTILER_BROWSER_KEY;
 
@@ -40,7 +41,19 @@ const requestMapTiler = async (path, params = {}) => {
     });
     url.searchParams.set('key', apiKey);
 
-    const response = await fetch(url);
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), MAPTILER_TIMEOUT_MS);
+    let response;
+    try {
+        response = await fetch(url, { signal: controller.signal });
+    } catch (err) {
+        if (err.name === 'AbortError') {
+            throw new ExpressError('Location lookup timed out. Please try again.', 504);
+        }
+        throw new ExpressError('Location lookup failed. Please check your connection and try again.', 502);
+    } finally {
+        clearTimeout(timeout);
+    }
     if (!response.ok) {
         throw new ExpressError('Location lookup failed. Please try another search.', response.status);
     }

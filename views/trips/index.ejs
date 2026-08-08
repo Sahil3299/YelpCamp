@@ -1,0 +1,53 @@
+<% layout('layouts/boilerplate') %>
+<% const currency = value => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(value); %>
+
+<section class="trips-page py-4 py-md-5">
+    <div class="trip-list-header d-flex align-items-end justify-content-between flex-wrap gap-3 mb-5">
+        <div>
+            <div class="page-kicker">Saved plans</div>
+            <h1 class="mb-1">My trips</h1>
+            <p class="text-muted mb-0">Your budget-checked YelpCamp itineraries.</p>
+        </div>
+        <a class="btn btn-theme btn-theme-primary" href="/trips/new"><i class="fas fa-plus me-2"></i>Plan a trip</a>
+    </div>
+
+    <% if (trips.length === 0) { %>
+    <div class="card border-0 shadow-sm text-center p-4 p-md-5">
+        <i class="fas fa-route fa-3x text-primary mb-3"></i>
+        <h2 class="h4">No trips planned yet</h2>
+        <p class="text-muted">Create your first itinerary using campgrounds already in YelpCamp.</p>
+        <div><a class="btn btn-theme btn-theme-primary" href="/trips/new">Plan my trip</a></div>
+    </div>
+    <% } else { %>
+    <div class="row g-4">
+        <% trips.forEach(trip => { %>
+        <div class="col-md-6 col-xl-4">
+            <article class="card trip-summary-card h-100">
+                <div class="card-body p-4 d-flex flex-column">
+                    <div class="d-flex justify-content-between align-items-start gap-3 mb-3">
+                        <div>
+                            <h2 class="h4 mb-1"><%= trip.title %></h2>
+                            <p class="text-muted small mb-0"><%= trip.from %> to <%= trip.destination %></p>
+                        </div>
+                        <% if (trip.budgetSatisfied) { %>
+                        <span class="badge text-bg-success">On budget</span>
+                        <% } else { %>
+                        <span class="badge text-bg-warning">Over budget</span>
+                        <% } %>
+                    </div>
+                    <dl class="row small mb-4">
+                        <dt class="col-6 text-muted fw-normal">Duration</dt>
+                        <dd class="col-6 text-end"><%= trip.days %> days</dd>
+                        <dt class="col-6 text-muted fw-normal">Estimate</dt>
+                        <dd class="col-6 text-end fw-semibold"><%= currency(trip.estimatedCost) %></dd>
+                        <dt class="col-6 text-muted fw-normal">Created</dt>
+                        <dd class="col-6 text-end"><%= new Date(trip.createdAt).toLocaleDateString('en-IN') %></dd>
+                    </dl>
+                    <a class="btn btn-theme btn-theme-secondary mt-auto" href="/trips/<%= trip._id %>">View trip</a>
+                </div>
+            </article>
+        </div>
+        <% }) %>
+    </div>
+    <% } %>
+</section>

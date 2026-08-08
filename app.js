@@ -15,6 +15,7 @@ const User = require('./models/user');
 const userRoutes = require('./routes/users');
 const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
+const aiTripRoutes = require('./routes/aiTrips');
 
 const dbUrl = process.env.MONGO_URI || process.env.DATABASE_URL || 'mongodb://localhost:27017/yelp-camp';
 
@@ -79,6 +80,7 @@ app.use((req, res, next) => {
 app.use('/', userRoutes);
 app.use('/campgrounds', campgroundRoutes)
 app.use('/campgrounds/:id/reviews', reviewRoutes)
+app.use('/trips', aiTripRoutes)
 
 
 app.get('/', (req, res) => {
@@ -91,6 +93,19 @@ app.all('*', (req, res, next) => {
 })
 
 app.use((err, req, res, next) => {
+    const wantsJson = req.get('Accept') && req.get('Accept').includes('application/json');
+    if (wantsJson) {
+        let message = err.message || 'Something went wrong. Please try again.';
+        let statusCode = err.statusCode || 500;
+        if (err.code === 'LIMIT_FILE_SIZE') {
+            message = 'Each image must be 5MB or smaller.';
+            statusCode = 400;
+        } else if (err.code === 'LIMIT_FILE_COUNT') {
+            message = 'You can upload a maximum of 6 images.';
+            statusCode = 400;
+        }
+        return res.status(statusCode).json({ error: message });
+    }
     if (err.code === 'LIMIT_FILE_SIZE') {
         req.flash('error', 'File is too large. Maximum size is 5MB per image.');
         return res.redirect('back');

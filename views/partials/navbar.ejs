@@ -17,11 +17,21 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <ul class="navbar-nav ms-auto align-items-lg-center">
                 <li class="nav-item">
-                    <a class="nav-link" href="/campgrounds">
-                        Campgrounds
+                    <a class="nav-link nav-explore-link" href="/campgrounds">
+                        <i class="fas fa-compass me-1" aria-hidden="true"></i>Explore
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-plan-link" href="/trips/new">
+                        <i class="fas fa-wand-magic-sparkles me-1" aria-hidden="true"></i>Plan a trip
                     </a>
                 </li>
                 <% if(currentUser) { %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/trips">
+                        <i class="fas fa-route me-1" aria-hidden="true"></i>My trips
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/campgrounds/new">
                         Add Campground
@@ -34,7 +44,7 @@
                         <a class="nav-link nav-login-link" href="/login">
                             Login
                         </a>
-                        <a class="btn btn-theme btn-theme-primary btn-sm" href="/register">
+                        <a class="btn btn-theme btn-theme-primary btn-sm nav-signup-btn" href="/register">
                             Get Started
                         </a>
                     </div>
